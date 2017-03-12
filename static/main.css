@@ -71,3 +71,15 @@ table tr {
   padding-left: 58%;
   padding-right: 1%;
 }
+
+.card{
+	text-align: center;
+}
+
+#wrapper {
+    overflow: hidden;
+}
+
+#scroller {
+    overflow: auto;
+}
