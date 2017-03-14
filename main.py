@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, g, session, redirect
 import time
 import BF_Machine
 app = Flask(__name__)
-app.secret_key = 'FUCK YOU SHOULD NOT BE SEEING THIS'
+app.secret_key = 'B3Dvm1BJF1'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
