@@ -10,96 +10,94 @@
 	<script type="text/javascript" src="../static/js/main.js?{{tag}}"></script>
 	</head>
 	<body>
-		<div class="backgroundImage" id="wrapper">
-			<div id="scroller">
-				<div class="card sidebar">
-					<div class="card-text">
-						<h2 class="heading"> Zain Afzal </h2>
-						<div class="social-link-wrapper">
-							<a href="https://github.com/zainafzal08"><img class="social-link" src="../static/images/github.png?v=2"></a>
-							<a href="https://www.linkedin.com/in/zain-afzal-561262117/"><img class="social-link" src="../static/images/linkedin.png?v=2"></a>
-							<a href="mailto:zain.afz@gmail.com"><img class="social-link" src="../static/images/email.png?v=2"></a>
-						</div>
-						<div class="nav-butt" id="projects" onmouseout="textUnFocus('projects')" onmouseover="textFocus('projects', 'tab-1')" onclick="pullTab('tab-1')">
-							<br>
-							<h4 class="heading"> Projects </h4>
-							<hr>
-							<h6> Subleq </h6>
-							<h6> BF Machine </h6>
-							<h6> General VM </h6>
-							<br>
-						</div>
-						<div class="nav-butt" id="fun" onmouseout="textUnFocus('fun')" onmouseover="textFocus('fun', 'tab-2')" onclick="pullTab('tab-2')">
-							<h4 class="heading"> Fun </h4>
-							<hr>
-							<h6> Generic Data </h6>
-							<h6> Crytpo </h6>
-							<h6> Cool Stuff </h6>
-							<h6> This Website </h6>
-							<br>
-						</div>
-						<div class="nav-butt" id="notes" onmouseout="textUnFocus('notes')" onmouseover="textFocus('notes', 'tab-3')" onclick="pullTab('tab-3')">
-							<h4 class="heading"> Notes </h4>
-							<hr>
-							<h6> Microprocessors </h6>
-							<h6> Compilers </h6>
-						</div>
+		<div class="backgroundImage">
+			<div class="card sidebar">
+				<div class="card-text">
+					<h2 class="heading"> Zain Afzal </h2>
+					<div class="social-link-wrapper">
+						<a href="https://github.com/zainafzal08"><img class="social-link" src="../static/images/github.png?v=2"></a>
+						<a href="https://www.linkedin.com/in/zain-afzal-561262117/"><img class="social-link" src="../static/images/linkedin.png?v=2"></a>
+						<a href="mailto:zain.afz@gmail.com"><img class="social-link" src="../static/images/email.png?v=2"></a>
 					</div>
-				</div>
-				<div class="card tab-1">
-					<div class="card-text tab-text">
-						<h3>Projects</h3>
+					<div class="nav-butt" id="projects" onmouseout="textUnFocus('projects')" onmouseover="textFocus('projects', 'tab-1')" onclick="pullTab('tab-1')">
+						<br>
+						<h4 class="heading"> Projects </h4>
 						<hr>
-						<b> Subleq </b>
-						<p> A puzzle game revolving around a single instruction set arcitecture machine built with a friend.<br>
-						<a href="http://www.riyasatsaber.com/subleq/">Live Link</a> | <a href="https://github.com/rsaber/subleq">Github</a> | <a href="http://riyasatsaber.com/">Riysat Saber</a></p>
+						<h6> Subleq </h6>
+						<h6> BF Machine </h6>
+						<h6> General VM </h6>
 						<br>
-						<b> BF Machine </b>
-						<p> A debugging/runtime environment for the BF esoteric programming language<br>
-						<a href="http://www.zainafzal.com/BFD">Live Link</a> | <a href="https://github.com/zainafzal08/BF-Machine">Github</a></p>
-						<br>
-						<b> General VM </b>
-						<p> A custom designed instruction set, run in python<br>
-						<a href="https://github.com/zainafzal08/General_VM/blob/master/docs/VM_Documentation_v1.md">Docs</a> | <a href="https://github.com/zainafzal08/General_VM">Github</a></p>
 					</div>
-					<div class="tab-label"></div>
-				</div>
-				<div class="card tab-2">
-					<div class="card-text tab-text">
-						<h3>Fun</h3>
+					<div class="nav-butt" id="fun" onmouseout="textUnFocus('fun')" onmouseover="textFocus('fun', 'tab-2')" onclick="pullTab('tab-2')">
+						<h4 class="heading"> Fun </h4>
 						<hr>
-						<b> Generic Data </b>
-						<p> A C program that stores abstract data in a structure chosen at runtime <br>
-						<a href="https://github.com/zainafzal08/GenericData">Github</a></p>
+						<h6> Generic Data </h6>
+						<h6> Crytpo </h6>
+						<h6> Cool Stuff </h6>
+						<h6> This Website </h6>
 						<br>
-						<b> Crypto </b>
-						<p> Some basic XOR Chipher and base 64 encoding programs written in C<br>
-						<a href="https://github.com/zainafzal08/Crypto">Github</a></p>
-						<br>
-						<b> Cool Stuff </b>
-						<p> A collection of cool code and a script or two that don't fit into their own project<br>
-						<a href="https://github.com/zainafzal08/CoolStuff">Github</a></p>
-						<br>
-						<b> This Website! </b>
-						<p> The html, css, js and back end flask code used in this very site<br>
-						<a href="https://github.com/zainafzal08/Resume">Github</a></p>
 					</div>
-					<div class="tab-label"></div>
-				</div>
-				<div class="card tab-3">
-					<div class="card-text tab-text">
-						<h4>Notes</h4>
+					<div class="nav-butt" id="notes" onmouseout="textUnFocus('notes')" onmouseover="textFocus('notes', 'tab-3')" onclick="pullTab('tab-3')">
+						<h4 class="heading"> Notes </h4>
 						<hr>
-						<b> Microprocesors </b>
-						<p> UNSW COMP2121, a course on fundamental microprocessor concepts in the context of the avr ATmega2560 <br>
-						<a href="https://github.com/rsaber/COMP2121-Notes/blob/29566a1ec50bc15242b8df4ad24f3fa8894fccc7/Lecture%20Notes/2121.md">Markdown</a></p>
-						<br>
-						<b> Compilers </b>
-						<p> UNSW COMP3131, a intro course to building a compiler in java and releated syntax, grammer and parsing concepts<br>
-						<a href="https://github.com/zainafzal08/Notes/tree/master/COMP3131-Notes">Github</a></p>
+						<h6> Microprocessors </h6>
+						<h6> Compilers </h6>
 					</div>
-					<div class="tab-label"></div>
 				</div>
+			</div>
+			<div class="card tab-1">
+				<div class="card-text tab-text">
+					<h3>Projects</h3>
+					<hr>
+					<b> Subleq </b>
+					<p> A puzzle game revolving around a single instruction set arcitecture machine built with a friend.<br>
+					<a href="http://www.riyasatsaber.com/subleq/">Live Link</a> | <a href="https://github.com/rsaber/subleq">Github</a> | <a href="http://riyasatsaber.com/">Riysat Saber</a></p>
+					<br>
+					<b> BF Machine </b>
+					<p> A debugging/runtime environment for the BF esoteric programming language<br>
+					<a href="http://www.zainafzal.com/BFD">Live Link</a> | <a href="https://github.com/zainafzal08/BF-Machine">Github</a></p>
+					<br>
+					<b> General VM </b>
+					<p> A custom designed instruction set, run in python<br>
+					<a href="https://github.com/zainafzal08/General_VM/blob/master/docs/VM_Documentation_v1.md">Docs</a> | <a href="https://github.com/zainafzal08/General_VM">Github</a></p>
+				</div>
+				<div class="tab-label"></div>
+			</div>
+			<div class="card tab-2">
+				<div class="card-text tab-text">
+					<h3>Fun</h3>
+					<hr>
+					<b> Generic Data </b>
+					<p> A C program that stores abstract data in a structure chosen at runtime <br>
+					<a href="https://github.com/zainafzal08/GenericData">Github</a></p>
+					<br>
+					<b> Crypto </b>
+					<p> Some basic XOR Chipher and base 64 encoding programs written in C<br>
+					<a href="https://github.com/zainafzal08/Crypto">Github</a></p>
+					<br>
+					<b> Cool Stuff </b>
+					<p> A collection of cool code and a script or two that don't fit into their own project<br>
+					<a href="https://github.com/zainafzal08/CoolStuff">Github</a></p>
+					<br>
+					<b> This Website! </b>
+					<p> The html, css, js and back end flask code used in this very site<br>
+					<a href="https://github.com/zainafzal08/Resume">Github</a></p>
+				</div>
+				<div class="tab-label"></div>
+			</div>
+			<div class="card tab-3">
+				<div class="card-text tab-text">
+					<h4>Notes</h4>
+					<hr>
+					<b> Microprocesors </b>
+					<p> UNSW COMP2121, a course on fundamental microprocessor concepts in the context of the avr ATmega2560 <br>
+					<a href="https://github.com/rsaber/COMP2121-Notes/blob/29566a1ec50bc15242b8df4ad24f3fa8894fccc7/Lecture%20Notes/2121.md">Markdown</a></p>
+					<br>
+					<b> Compilers </b>
+					<p> UNSW COMP3131, a intro course to building a compiler in java and releated syntax, grammer and parsing concepts<br>
+					<a href="https://github.com/zainafzal08/Notes/tree/master/COMP3131-Notes">Github</a></p>
+				</div>
+				<div class="tab-label"></div>
 			</div>
 		</div>
 	</body>
