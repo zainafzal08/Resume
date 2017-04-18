@@ -8,6 +8,26 @@ app.secret_key = 'B3Dvm1BJF1'
 def index():
 	return render_template("index.html", tag=str(time.time()))
 
+@app.route('/message', methods=['GET', 'POST'])
+def message():
+	if request.method == "GET":
+		if "top" in request.args and "bot" in request.args:
+			message_top = request.args["top"]
+			message_bot = request.args["bot"]
+			return render_template("message.html", message_top = message_top, message_bot = message_bot, tag=str(time.time()))
+		else:
+			return render_template("message_request.html",tag=str(time.time()))
+	else:
+		topText= request.form['top']
+		botText = request.form['bot']
+		text = "top="
+		for word in topText.split(" "):
+			text+=word+"%20"
+		text += "&"
+		for word in botText.split(" "):
+			text+=word+"%20"
+		url = "www.zainafzal.com/message?"+text
+		return redirect(url, code=302)
 @app.route('/BFD', methods=['GET', 'POST'])
 def BFD():
 	if request.method == "GET":
