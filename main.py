@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, g, session, redirect
 import time
 import BF_Machine
+from random import randint
+
 app = Flask(__name__)
 app.secret_key = 'B3Dvm1BJF1'
 
@@ -8,26 +10,26 @@ app.secret_key = 'B3Dvm1BJF1'
 def index():
 	return render_template("index.html", tag=str(time.time()))
 
-@app.route('/message', methods=['GET', 'POST'])
-def message():
+@app.route('/timer', methods=['GET', 'POST'])
+def timer():
 	if request.method == "GET":
-		if "top" in request.args and "bot" in request.args:
-			message_top = request.args["top"]
-			message_bot = request.args["bot"]
-			return render_template("message.html", message_top = message_top, message_bot = message_bot, tag=str(time.time()))
+		if "title" in request.args and "time_mins" in request.args and "time_hours" in request.args:
+			timer_title = request.args["title"]
+			imgName = getRandomImg();
+			timer_time = int(request.args["time_mins"])+60*int(request.args["time_hours"])
+			danger = int(request.args["danger"])*60
+			timer_time_final = timer_time*60 # we like seconds
+			return render_template("timer.html", danger_time = danger, imgName = imgName, title = timer_title, timer_time = timer_time_final, tag=str(time.time()))
 		else:
-			return render_template("message_request.html",tag=str(time.time()))
-	else:
-		topText= request.form['top']
-		botText = request.form['bot']
-		text = "top="
-		for word in topText.split(" "):
-			text+=word+"%20"
-		text += "&"
-		for word in botText.split(" "):
-			text+=word+"%20"
-		url = "www.zainafzal.com/message?"+text
-		return redirect(url, code=302)
+			return render_template("timer_request.html", tag=str(time.time()))
+def getRandomImg():
+	imgs = []
+	imgs.append("hipster.jpg")
+	imgs.append("hipster_2.jpg")
+	imgs.append("hipster_3.jpg")
+	randNum = randint(0,len(imgs)-1)
+	return imgs[randNum]
+
 @app.route('/BFD', methods=['GET', 'POST'])
 def BFD():
 	if request.method == "GET":

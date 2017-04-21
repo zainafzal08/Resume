@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Zain Afzal</title>
+	<link rel="stylesheet" href="../static/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="../static/main.css?{{tag}}" type="text/css">
+	<script>
+		var timer_running = false;
+		var seconds_left = {{timer_time}};
+		var intervalHandle;
+		function timerOnload(){
+			updateTimerView(seconds_left);
+		}
+		function startTimer(){
+			timer_running = true;
+			intervalHandle = setInterval(progressTimer, 1000);
+			var start_btn = document.getElementById("startBtn");
+			var pause_btn = document.getElementById("pauseBtn");
+			startBtn.style.display = "none";
+			pauseBtn.style.display = "";
+		}
+
+		function pauseTimer(){
+			timer_running = false;
+			var start_btn = document.getElementById("startBtn");
+			var pause_btn = document.getElementById("pauseBtn");
+			pauseBtn.style.display = "none";
+			startBtn.style.display = "";
+		}
+
+		function progressTimer(){
+			if(timer_running){
+				seconds_left -= 1;
+				var col = "#FFFFFF";
+				if(seconds_left < 0){
+					endTimer();
+					return;
+				}
+				if(seconds_left < {{danger_time}}){
+					col = "#db5155";
+				}
+				updateTimerView(seconds_left, col);
+			}
+		}
+
+		function endTimer(){
+			// no longer running
+			timer_running = false;
+			window.clearInterval(intervalHandle);
+			// reset the buttons
+			var start_btn = document.getElementById("startBtn");
+			var pause_btn = document.getElementById("pauseBtn");
+			pauseBtn.style.display = "none";
+			startBtn.style.display = "";
+			// block the button until the timer is reset
+			start_btn.className = start_btn.className + " disabled";
+		}
+
+		function resetTimer(){
+			endTimer();
+			seconds_left = {{timer_time}};
+			// undisable the start button
+			var start_btn = document.getElementById("startBtn");
+			start_btn.classList.remove("disabled");
+			// update the timerview
+			updateTimerView(seconds_left, "#FFFFFF");
+		}
+		function pad(n, width, z) {
+		  z = z || '0';
+		  n = n + '';
+		  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+		}
+
+		function updateTimerView(seconds_left, color){
+			var secs = seconds_left % 60;
+			var mins = Math.floor(seconds_left/60) % 60;
+			var hours = Math.floor(seconds_left/60/60);
+			var timer = document.getElementById("timer_view");
+			var secs_text = pad(secs, 2);
+			var mins_text = pad(mins, 2);
+			var hours_text = pad(hours, 2);
+			var timer_text = hours_text + ":" + mins_text + ":"+secs_text
+			timer.innerHTML = timer_text;
+			timer.style.color = color;
+		}
+	</script>
+	</head>
+	<body style="background-image: url('../static/images/{{imgName}}?4'); background-size: cover;" onload="timerOnload()">
+		<div style="color: white; text-align: center; padding-top: 35vh">
+			<h1 style="color: white;" > {{ title }}</h1>
+			<hr style="background-color: #FFFFFF;width: 80%; height: 1px;">
+			<div class="row">
+				<div class="col-xs-4">
+					<button id="startBtn" onclick="startTimer()" class="btn btn-default">Start</button>
+					<button id="pauseBtn" onclick="pauseTimer()" style="display: none" class="btn btn-default">Pause</button>
+				</div>
+				<div class="col-xs-4">
+					<h1 style="color: white;" id="timer_view"></h1>
+				</div>
+				<div class="col-xs-4">
+					<button id="resetBtn" onclick="resetTimer()" class="btn btn-default">Reset</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
