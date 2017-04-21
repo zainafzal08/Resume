@@ -23,6 +23,7 @@
 
 		function pauseTimer(){
 			timer_running = false;
+			window.clearInterval(intervalHandle);
 			var start_btn = document.getElementById("startBtn");
 			var pause_btn = document.getElementById("pauseBtn");
 			pauseBtn.style.display = "none";
