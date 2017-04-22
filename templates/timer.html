@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Zain Afzal</title>
 	<link rel="stylesheet" href="../static/bootstrap.css" type="text/css">
-	<link rel="stylesheet" href="../static/main.css?{{tag}}" type="text/css">
+	<link rel="stylesheet" href="../static/timer.css?{{tag}}" type="text/css">
 	<script>
 		var timer_running = false;
 		var seconds_left = {{timer_time}};
@@ -84,20 +84,49 @@
 			var timer_text = hours_text + ":" + mins_text + ":"+secs_text
 			timer.innerHTML = timer_text;
 			timer.style.color = color;
+			{% if changeCol %}
+				var background = document.getElementById("back");
+				var rgbStr = background.style.backgroundColor.substr(4);
+				var rgb = rgbStr.split(")")[0].split(" ");
+				var R = parseInt(rgb[0]);
+				var G = parseInt(rgb[1]);
+				var B = parseInt(rgb[2]);
+				B += 1;
+				if(B > 255){
+					B = 0;
+				}
+				if(B == 0){
+					G += 1;
+					if(G > 255){
+						G = 0;
+					}
+					if(G == 0){
+						R += 1
+						if(R > 255){
+							R = 0;
+						}
+					}
+				}
+				background.style.backgroundColor = "rgb("+R.toString()+","+G.toString()+","+B.toString()+")"
+			{% endif %}
 		}
 	</script>
 	</head>
-	<body style="background-image: url('../static/images/{{imgName}}?4'); background-size: cover;" onload="timerOnload()">
-		<div style="color: white; text-align: center; padding-top: 35vh">
-			<h1 style="color: white;" > {{ title }}</h1>
-			<hr style="background-color: #FFFFFF;width: 80%; height: 1px;">
+	{% if imgName %}
+	<body id="back" style="background-image: url('../static/images/{{imgName}}?4'); background-size: cover;" onload="timerOnload()">
+	{% else %}
+	<body id="back" style="background-color: #272b30;" onload="timerOnload()">
+	{% endif %}
+		<div class="timer-main">
+			<h1> {{ title }}</h1>
+			<hr>
 			<div class="row">
 				<div class="col-xs-4">
 					<button id="startBtn" onclick="startTimer()" class="btn btn-default">Start</button>
 					<button id="pauseBtn" onclick="pauseTimer()" style="display: none" class="btn btn-default">Pause</button>
 				</div>
 				<div class="col-xs-4">
-					<h1 style="color: white;" id="timer_view"></h1>
+					<h1 id="timer_view"></h1>
 				</div>
 				<div class="col-xs-4">
 					<button id="resetBtn" onclick="resetTimer()" class="btn btn-default">Reset</button>

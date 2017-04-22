@@ -15,11 +15,24 @@ def timer():
 	if request.method == "GET":
 		if "title" in request.args and "time_mins" in request.args and "time_hours" in request.args:
 			timer_title = request.args["title"]
-			imgName = getRandomImg();
+			changeCol = False
+			solidCol = "off"
+
+			if "solidCol" in request.args:
+				solidCol = request.args["solidCol"]
+
+			if solidCol == "on":
+				imgName = None
+				if "changeCol" in request.args:
+					if request.args["changeCol"] == "on":
+						changeCol = True
+			else:
+				imgName = getRandomImg();
+
 			timer_time = int(request.args["time_mins"])+60*int(request.args["time_hours"])
-			danger = int(request.args["danger"])*60
+			danger = int(request.args["danger"].split(" ")[0])*60
 			timer_time_final = timer_time*60 # we like seconds
-			return render_template("timer.html", danger_time = danger, imgName = imgName, title = timer_title, timer_time = timer_time_final, tag=str(time.time()))
+			return render_template("timer.html", changeCol = changeCol, danger_time = danger, imgName = imgName, title = timer_title, timer_time = timer_time_final, tag=str(time.time()))
 		else:
 			return render_template("timer_request.html", tag=str(time.time()))
 def getRandomImg():

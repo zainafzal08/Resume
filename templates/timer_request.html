@@ -4,35 +4,82 @@
 		<meta charset="UTF-8">
 		<title>Zain Afzal</title>
 	<link rel="stylesheet" href="../static/bootstrap.css?{{tag}}" type="text/css">
-	<link rel="stylesheet" href="../static/main.css?{{tag}}" type="text/css">
+	<link rel="stylesheet" href="../static/timer.css?{{tag}}" type="text/css">
+	<script type="text/javascript">
+		function toggleChangeCol(){
+			var changeColWrapper = document.getElementById("changeColWrapper");
+			var changeCol = document.getElementById("changeCol");
+			var solidCol = document.getElementById("solidCol");
+			console.log(solidCol.checked);
+			if(solidCol.checked){
+				changeCol.disabled = false;
+				changeColWrapper.style.opacity = 1;
+			}else{
+				changeCol.disabled = true;
+				changeColWrapper.style.opacity = 0.1;
+			}
+		}
+		function toggleExtraOptions(){
+			var extraOptions = document.getElementById("extra-options");
+			var btn = document.getElementById("toggleButton");
+			btn.style.display  = "none";
+			extraOptions.style.display = "";
+		}
+	</script>
 	</head>
-	<body style="background-color: #272b30">
-		<div style="color: white; text-align: center; padding-top: 25vh">
-			<h1 style="color: white;"> Type in your Title And Time!</h1>
-			<hr style="background-color: #FFFFFF; width: 80%; height: 1px;">
+	<body class="timer-request-body">
+		<div class="timer-request-main">
+			<h1> Type in your Title And Time!</h1>
+			<hr>
 			<div class="row">
 				<div class="col-xs-4"></div>
 				<div class="col-xs-4">
 					<form type="post">
-						<input name="title" class="form-control" value="My Timer" type="text" style="color: white">
+						<input name="title" class="form-control" value="My Timer" type="text">
 						<div class="row">
 						<div class="col-xs-5">
-						<input name="time_hours" class="form-control" type="text" value="00" style="color: white">
+						<input name="time_hours" class="form-control" type="text" value="00">
 						</div>
-						<div class="col-xs-2"><h4 style="color: white">:</h4></div>
+						<div class="col-xs-2"><h4>:</h4></div>
 						<div class="col-xs-5">
-							<input name="time_mins" class="form-control" type="text" value="10" style="color: white">
+							<input name="time_mins" class="form-control" type="text" value="10">
 						</div>
 						</div>
 						<br>
-						<div class="row">
-						<div class="col-xs-3" style="padding-right: 0"><h5 style="color: white; text-align: left">Turn Red</h5></div>
-						<div class="col-xs-2">
-							<input name="danger" class="form-control" value="    1" type="text" style="color: white">
+						<div id="toggleButton" class="extra-options-toggle" onclick="toggleExtraOptions()">
+							<h5>Extra Options <span class="caret"></span></h5>
 						</div>
-						<div class="col-xs-6"><h5 style="color: white; text-align: left">Minute(s) from finish</h5></div>
+						<div id="extra-options" class="extra-options" style="display: none">
+							<h5> Extra Options </h5>
+							<hr>
+							<div class="row">
+								<div class="col-xs-6">
+									<label>
+			            				<input id="solidCol" name="solidCol" type="checkbox" onclick="toggleChangeCol()"> Solid Colour Background
+			          				</label>
+		          				</div>
+								<div class="col-xs-6" id="changeColWrapper" style="opacity: 0.1">
+									<label>
+			            				<input id="changeCol" name="changeCol" type="checkbox" disabled> Change Colour Over Time
+			          				</label>
+		          				</div>
+	          				</div>
+							<br>
+							<div class="row">
+								<div class="col-xs-5">
+									<h5>Turn timer red : </h5>
+								</div>
+								<div class="col-xs-7">
+        							<select name="danger" class="form-control" id="select">
+							          <option>1 Minute Away</option>
+							          <option>5 Minutes Away</option>
+							          <option>10 Minutes Away</option>
+							          <option>20 Minutes Away</option>
+							        </select>
+		          				</div>
+	          				</div>
+	          				<br>
 						</div>
-						<br>
 						<br>
 						<button type="submit" class="btn btn-success">Submit</button>
 					</form>

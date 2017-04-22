@@ -1,0 +1,79 @@
+.timer-request-body{
+	background-color: #272b30;
+}
+
+.timer-request-main{
+	text-align: center;
+	padding-top: 25vh;
+}
+
+.timer-request-main hr{
+	background-color: #FFFFFF;
+	width: 80%;
+	height: 1px;
+}
+
+.timer-request-main h1,h2,h3,h4,h5,h6 {
+	color: #FFFFFF;
+}
+
+.timer-request-main input{
+	color: white;
+}
+.timer-request-main label{
+	color: white;
+}
+
+.danger-prompt-left{
+	padding-right: 0;
+	text-align: left;
+}
+.danger-prompt-right{
+	padding-left: 0;
+	text-align: left;
+}
+.danger-prompt{
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.extra-options-toggle{
+	background-color: rgba(255,255,255,0.1);
+	text-align: left;
+	padding: 1%;
+	cursor: pointer;
+}
+
+.extra-options-toggle h5{
+	text-align: center;
+}
+.extra-options-toggle select{
+	color: white;
+}
+.extra-options{
+	background-color: rgba(255,255,255,0.1);
+	text-align: left;
+	padding: 1%;
+}
+.extra-options h5{
+	text-align: center;
+}
+.extra-options select{
+	color: white;
+}
+/* Actual timer style */
+.timer-main{
+	color: white;
+	text-align:
+	center;
+	margin-top: 35vh;
+}
+.timer-main h1,h2,h3,h4,h5,h6 {
+	color: #FFFFFF;
+}
+.timer-main hr{
+	background-color: #FFFFFF;
+	width: 80%;
+	height: 1px;
+}
+
