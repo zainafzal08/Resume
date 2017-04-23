@@ -10,7 +10,9 @@
 		var seconds_left = {{timer_time}};
 		var intervalHandle;
 		function timerOnload(){
-			updateTimerView(seconds_left);
+			var colText = "#FFFFFF";
+			var colRim = "#2196f3";
+			updateTimerView(seconds_left, colRim, colText);
 		}
 		function startTimer(){
 			timer_running = true;
@@ -33,15 +35,17 @@
 		function progressTimer(){
 			if(timer_running){
 				seconds_left -= 1;
-				var col = "#FFFFFF";
+				var colText = "#FFFFFF";
+				var colRim = "#2196f3";
 				if(seconds_left < 0){
 					endTimer();
 					return;
 				}
 				if(seconds_left < {{danger_time}}){
-					col = "#db5155";
+					colText = "#db5155";
+					colRim = "#db5155";
 				}
-				updateTimerView(seconds_left, col);
+				updateTimerView(seconds_left, colRim, colText);
 			}
 		}
 
@@ -65,7 +69,7 @@
 			var start_btn = document.getElementById("startBtn");
 			start_btn.classList.remove("disabled");
 			// update the timerview
-			updateTimerView(seconds_left, "#FFFFFF");
+			updateTimerView(seconds_left, "#db5155", "#FFFFFF");
 		}
 		function pad(n, width, z) {
 		  z = z || '0';
@@ -73,7 +77,7 @@
 		  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 		}
 
-		function updateTimerView(seconds_left, color){
+		function updateTimerView(seconds_left, colorRim, colorText){
 			var secs = seconds_left % 60;
 			var mins = Math.floor(seconds_left/60) % 60;
 			var hours = Math.floor(seconds_left/60/60);
@@ -83,7 +87,14 @@
 			var hours_text = pad(hours, 2);
 			var timer_text = hours_text + ":" + mins_text + ":"+secs_text
 			timer.innerHTML = timer_text;
-			timer.style.color = color;
+			timer.setAttribute("fill", colorText);
+			if({{timer_time}} == seconds_left){
+				// initalising
+				updateArcView(-1,colorRim);
+			}else{
+				var angle = (({{timer_time}} - seconds_left) / {{timer_time}}) * 360;
+				updateArcView(angle, colorRim);
+			}
 			{% if changeCol %}
 				var background = document.getElementById("back");
 				var rgbStr = background.style.backgroundColor.substr(4);
@@ -110,25 +121,91 @@
 				background.style.backgroundColor = "rgb("+R.toString()+","+G.toString()+","+B.toString()+")"
 			{% endif %}
 		}
+
+		function toRadians (angle) {
+		  return angle * (Math.PI / 180);
+		}
+		function updateArcView(angle, col){
+			var arc1 = document.getElementById("arc1");
+			var arc2 = document.getElementById("arc2");
+			var arc3 = document.getElementById("arc3");
+			var arc4 = document.getElementById("arc4");
+			arc1.setAttribute("stroke", col);
+			arc2.setAttribute("stroke", col);
+			arc3.setAttribute("stroke", col);
+			arc4.setAttribute("stroke", col);
+			if(angle == -1){
+				// reset. 
+				var newVal = "m150 3 a144 144 0 0 1 0 0";
+				arc1.setAttribute("d", newVal);
+				newVal = "m297 150 a144 144 0 0 1 0 0";
+				arc2.setAttribute("d", newVal);
+				newVal = "m150 297 a144 144 0 0 1 0 0";
+				arc3.setAttribute("d", newVal);
+				newVal = "m3 150 a144 144 0 0 1 0 0";
+				arc4.setAttribute("d", newVal);
+			}
+			else if(angle <= 90){
+				x = 147*Math.sin(toRadians(angle));
+				y = 147 - 147*Math.cos(toRadians(angle));
+				var newVal = "m150 3 a144 144 0 0 1" +x.toString() +" " + y.toString();
+				arc1.setAttribute("d", newVal);
+			}else if(angle > 90 && angle <= 180){
+				angle = angle - 90;
+				x = (147 - 147*Math.cos(toRadians(angle)))*-1;
+				y = 147*Math.sin(toRadians(angle));
+				var newVal = "m297 150 a144 144 0 0 1 " +x.toString() +" " + y.toString();
+				arc2.setAttribute("d", newVal);
+			}else if(angle > 180 && angle <= 270){
+				angle = angle - 180;
+				x = 147*Math.sin(toRadians(angle))*-1;
+				y = (147-147*Math.cos(toRadians(angle)))*-1;
+				var newVal = "m150 297 a144 144 0 0 1 " +x.toString() +" " + y.toString();
+				arc3.setAttribute("d", newVal);
+			}else{
+				angle = angle - 270;
+				x = 147 - 147*Math.cos(toRadians(angle));
+				y = 147*Math.sin(toRadians(angle))*-1;
+				var newVal = "m3 150 a144 144 0 0 1 " +x.toString() +" " + y.toString();
+				arc4.setAttribute("d", newVal);
+			}
+		}
 	</script>
 	</head>
 	{% if imgName %}
-	<body id="back" style="background-image: url('../static/images/{{imgName}}?4'); background-size: cover;" onload="timerOnload()">
+	<body id="back" style="background-image: url('../static/images/{{imgName}}?4'); background-size: cover; height: 100%;" onload="timerOnload()">
 	{% else %}
 	<body id="back" style="background-color: #272b30;" onload="timerOnload()">
 	{% endif %}
 		<div class="timer-main">
-			<h1> {{ title }}</h1>
-			<hr>
+			<div class="title">
+				<h1> {{ title }}</h1>
+				<hr>
+			</div>
 			<div class="row">
-				<div class="col-xs-4">
+				<div class="col-xs-4 L-btn-wrapper">
 					<button id="startBtn" onclick="startTimer()" class="btn btn-default">Start</button>
 					<button id="pauseBtn" onclick="pauseTimer()" style="display: none" class="btn btn-default">Pause</button>
 				</div>
 				<div class="col-xs-4">
-					<h1 id="timer_view"></h1>
+					<svg class="timer-circle">
+						<circle cx="150" cy="150" r="150" fill="rgba(0,0,0,0.2)" />
+						<text id="timer_view" fill="white" x="42.61" y="175" font-family="sans-serif" font-size="55"> </text>
+						<g>
+							<path id="arc1" d="m150 3 a144 144 0 0 1 0 0" stroke="#2196f3" stroke-width="5" fill="none"></path>
+						</g>
+						<g>
+							<path id="arc2" d="m297 150 a144 144 0 0 1 0 0" stroke="#2196f3" stroke-width="5" fill="none"></path>
+						</g>
+						<g>
+							<path id="arc3" d="m150 297 a144 144 0 0 1 0 0" stroke="#2196f3" stroke-width="5" fill="none"></path>
+						</g>
+						<g>
+							<path id="arc4" d="m3 150 a144 144 0 0 1 0 0" stroke="#2196f3" stroke-width="5" fill="none"></path>
+						</g>
+					</svg>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-4 R-btn-wrapper">
 					<button id="resetBtn" onclick="resetTimer()" class="btn btn-default">Reset</button>
 				</div>
 			</div>

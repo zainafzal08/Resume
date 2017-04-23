@@ -37,9 +37,7 @@ def timer():
 			return render_template("timer_request.html", tag=str(time.time()))
 def getRandomImg():
 	imgs = []
-	imgs.append("hipster.jpg")
 	imgs.append("hipster_2.jpg")
-	imgs.append("hipster_3.jpg")
 	randNum = randint(0,len(imgs)-1)
 	return imgs[randNum]
 
