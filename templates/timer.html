@@ -60,6 +60,7 @@
 			startBtn.style.display = "";
 			// block the button until the timer is reset
 			start_btn.className = start_btn.className + " disabled";
+			start_btn.onclick = "";
 		}
 
 		function resetTimer(){
@@ -68,6 +69,7 @@
 			// undisable the start button
 			var start_btn = document.getElementById("startBtn");
 			start_btn.classList.remove("disabled");
+			start_btn.onclick = startTimer;
 			// update the timerview
 			updateTimerView(seconds_left, "#db5155", "#FFFFFF");
 		}
