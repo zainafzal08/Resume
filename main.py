@@ -29,6 +29,9 @@ def timer():
 			else:
 				imgName = getRandomImg();
 
+			if "cheat" in request.args:
+				imgName = "hipster_5.jpg"
+				print("LOL")
 			timer_time = int(request.args["time_mins"])+60*int(request.args["time_hours"])
 			danger = int(request.args["danger"].split(" ")[0])*60
 			timer_time_final = timer_time*60 # we like seconds
