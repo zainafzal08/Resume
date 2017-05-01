@@ -27,26 +27,32 @@ def timer():
 					if request.args["changeCol"] == "on":
 						changeCol = True
 			else:
-				imgName = getRandomImg();
+				imgName = getRandomImg(-1);
 
 			if "cheat" in request.args:
-				imgName = "hipster_5.jpg"
-				print("LOL")
+				imgName = getRandomImg(request.args["cheat"]);
+
 			timer_time = int(request.args["time_mins"])+60*int(request.args["time_hours"])
 			danger = int(request.args["danger"].split(" ")[0])*60
 			timer_time_final = timer_time*60 # we like seconds
 			return render_template("timer.html", changeCol = changeCol, danger_time = danger, imgName = imgName, title = timer_title, timer_time = timer_time_final, tag=str(time.time()))
 		else:
 			return render_template("timer_request.html", tag=str(time.time()))
-def getRandomImg():
+def getRandomImg(cheat):
 	imgs = []
-	imgs.append("hipster.jpg")
+	imgs.append("hipster_1.jpg")
 	imgs.append("hipster_2.jpg")
 	imgs.append("hipster_3.png")
 	imgs.append("hipster_4.png")
 	imgs.append("hipster_5.jpg")
 	imgs.append("hipster_6.jpg")
-	randNum = randint(0,len(imgs)-1)
+	imgs.append("hipster_7.jpg")
+	imgs.append("hipster_8.jpg")
+	imgs.append("hipster_9.jpg")
+	if cheat != -1:
+		randNum = int(cheat)-1
+	else:
+		randNum = randint(0,len(imgs)-1)
 	return imgs[randNum]
 
 @app.route('/BFD', methods=['GET', 'POST'])
