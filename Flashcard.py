@@ -22,12 +22,12 @@ def getFlashcards(inputText):
 	count = 1
 	question = "ERROR"
 	inputTextLines = inputText.split("\n")
-	for line in inputTextLines:
+	for i,line in enumerate(inputTextLines):
 		if(count % 3 == 0):
 			count = 1
 			continue
 		elif(count % 2 == 0):
-			flashcards.append((question, line.strip()))
+			flashcards.append((question, line.strip(), i))
 		else:
 			question = line.strip();
 		count+=1

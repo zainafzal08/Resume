@@ -22,21 +22,28 @@
       </div>
   </div>
   {%for card in flashcards%}
-  <div class="row">
-    <div class="col-md-6">
-      <div class="panel panel-info">
+  <div class="row" id="{{card[2]}}">
+    <div class="col-md-5">
+      <div class="panel panel-info" id="{{card[2]}}_Q">
         <div class="panel-body">
          {{card[0]}}
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="panel panel-info">
+      <div class="panel panel-info" id="{{card[2]}}_A">
         <div class="panel-body flash-answers">
           {{card[1]}}
         </div>
       </div>
     </div>
+    <div class="col-md-1">
+      <div style="padding-top: 12%">
+        <button class="btn btn-info btn-xs" onclick="document.getElementById('{{card[2]}}_Q').style.background = 'rgba(231,76,60,0.2)';">Mark</button>
+        <button class="btn btn-success btn-xs" onclick="document.getElementById('{{card[2]}}').style.display = 'none';">Done</button>
+      </div>
+    </div>
+    <br>
   </div>
   {% endfor %}
   </body>
