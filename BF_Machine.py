@@ -1,5 +1,7 @@
 import re
 import sys
+from flask import Flask, render_template, request, g, session, redirect
+
 # Functions borrowed from my gannt chart library
 
 #formats a rectangle html tag
@@ -22,6 +24,47 @@ def rect(x,y,h,f,o):
 def text(x,y,s,offset,color):
 	text = "<text fill='"+color+"' style=style=\"cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px;\" x=\""+str(x)+"\" y=\""+str(y)+"\" dx=\""+str(offset)+"\">"+s+"</text>"
 	return text
+
+# simple function to handle a flask request
+def handleRequest(request, memSize, session):
+	if request.method == "GET":
+		session['pc'] = -1
+		return render_template("BFDIN.html")
+	else:
+		noPost = False
+		if session['pc'] == -1:
+			#first time, grab code
+			session['code'] = request.form['code']
+			try:
+				session['code'][0]
+			except:
+				return redirect("/BFD")
+			session['pc'] = 0
+			session['scroll'] = 0
+			noPost = True
+		machine = Machine(memSize)
+		success = machine.loadCode(session['code'])
+		if not success: 
+			return redirect("/BFD")
+		#get back to old state
+		machine.runFor(session['pc'])
+		if noPost == False:
+			if request.form["post"] == "step+":
+				machine.step()
+			elif request.form["post"] == "step-":
+				reset = session['pc'] - 1
+				machine = Machine(memSize)
+				machine.loadCode(session['code'])
+				machine.runFor(reset)
+			elif request.form["post"] == "skip":
+				machine.skipLoop()
+			elif request.form["post"] == "run":
+				machine.run()
+			elif request.form["post"] == "next":
+				machine.nextLoop(True)
+			session['pc'] = machine.cycles
+			session['scroll'] = request.form['scroll']
+		return render_template('BFD.html', code=machine.codeToHTML(), console=machine.consoleToHTML(), memory=machine.memoryToHTML(), scroll=session['scroll'])
 
 # The Main Machine Object Class
 class Machine():

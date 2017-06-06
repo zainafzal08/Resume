@@ -204,3 +204,18 @@ table tr {
     overflow: scroll;
     height: 100vh;
 }
+
+/* code for flashcards */
+.flash-answers{
+  color: white;
+}
+
+.flash-answers:hover{
+  color: black;
+}
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
