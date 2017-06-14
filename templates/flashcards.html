@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="../static/bootstrap_2.css" type="text/css">
-    <link rel="stylesheet" href="../static/main.css?v=1111" type="text/css">
+    <link rel="stylesheet" href="../static/main.css?v=1114" type="text/css">
   </head>
   <body style="padding: 10%">
   <div class="navbar navbar-default navbar-fixed-top">
@@ -23,21 +23,21 @@
   </div>
   {%for card in flashcards%}
   <div class="row" id="{{card[2]}}">
-    <div class="col-md-5">
+    <div class="col-md-4">
       <div class="panel panel-info" id="{{card[2]}}_Q">
         <div class="panel-body">
-         {{card[0]}}
+         {{card[0]|safe}}
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="panel panel-info" id="{{card[2]}}_A">
-        <div class="panel-body flash-answers">
-          {{card[1]}}
+      <div class="panel panel-info">
+        <div id="{{card[2]}}_A" class="panel-body flash-answers">
+          {{card[1]|safe}}
         </div>
       </div>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
       <div style="padding-top: 12%">
         <button class="btn btn-info btn-xs" onclick="document.getElementById('{{card[2]}}_Q').style.background = 'rgba(231,76,60,0.2)';">Mark</button>
         <button class="btn btn-success btn-xs" onclick="document.getElementById('{{card[2]}}').style.display = 'none';">Done</button>

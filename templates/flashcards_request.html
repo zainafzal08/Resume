@@ -26,12 +26,26 @@
       <form method="POST">
       <input type="text" class="form-control" name="title" placeholder="My Flashcards">
       <br>
-      <textarea class="form-control" rows="20" name="inputText">
-What is 2 + 2?
+      <textarea class="form-control" rows="20" name="inputText">What is 2 + 2?
+---
 4
 
-What is 1 + 4?
-5</textarea>
+What is 1 + 4 * 5?
+---
+21!
+if you got it wrong, remember to break it down like this
+1+(4*5)
+
+If i roll two 3 sided dice, what's the chance the sum of the dice is 6?
+---
+There are 9 possibilites and only 1 results in 6 so 1/9.
+!table
+   1  2  3
+1  2  3  4
+2  3  4  5
+3  4  5  6
+!endtable
+see! only 3+3 results in 6. </textarea>
       <br>
       <button class="btn btn-success" type="submit">Create Flashcards!</button>
       </form>
@@ -41,7 +55,10 @@ What is 1 + 4?
         <p>To use just put in your flashcards in the textbox on the left!</p>
       </blockquote>
       <blockquote>
-        <p>The format should be the question on line 1, the answer on line 2 and a blank line on line 3. Then just repeat for as many flashcards as you need!</p>
+        <p>The format should be the question, three hyphens ('-') and then the answer. Then just put in a blank line and repeat for as many flashcards as you need!</p>
+      </blockquote>
+      <blockquote>
+        <p>If you want to put in a table, put '!table' on a line on it's own and below that put in your table using any standard tab or space seperated format. Use `!endtable` to signify that the table has ended. See the example on the left. </p>
       </blockquote>
       <blockquote>
         <p>Click on create flashcards when you're ready!</p>

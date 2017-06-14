@@ -207,11 +207,11 @@ table tr {
 
 /* code for flashcards */
 .flash-answers{
-  color: white;
+  opacity: 0.0;
 }
 
 .flash-answers:hover{
-  color: black;
+  opacity: 1.0;
 }
 
 .equal {
