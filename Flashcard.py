@@ -20,7 +20,7 @@ def handleRequest(request):
 	# process
 	flashcards = getFlashcards(inputText)
 	# render
-	return render_template("flashcards.html", tag=str(time.time()), title=title, flashcards=flashcards)
+	return render_template("flashcards.html", tag=str(time.time()), title=title, flashcards=flashcards, count=len(flashcards))
 
 
 def multiSplit(text, sep):
