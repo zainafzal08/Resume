@@ -13,6 +13,7 @@
       var allCount = {{count}};
       function card_wrong(elem){
         document.getElementById(elem+'_Q').style.background = 'rgba(231,76,60,0.2)';
+        document.getElementById(elem+'_A').classList.remove('flash-answers');
         document.getElementById(elem+'_B').style.display = 'none';
         totalCount++;
         update_count_view();
