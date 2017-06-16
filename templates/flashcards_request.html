@@ -26,6 +26,13 @@
       <form method="POST">
       <input type="text" class="form-control" name="title" value="My Flashcards">
       <br>
+      {%if err %}
+      <div class="alert alert-dismissible alert-danger" id='alert_1'>
+        <button type="button" class="close" onclick="document.getElementById('alert_1').style.display = 'none';">&times;</button>
+        <strong>{{msg[0]}}</strong> <br>{{msg[1]}}
+      </div>
+            <textarea class="form-control" rows="20" name="inputText">{{original}}</textarea>
+      {%else%}
       <textarea class="form-control" rows="20" name="inputText">What is 2 + 2?
 ---
 4
@@ -46,6 +53,7 @@ There are 9 possibilites and only 1 results in 6 so 1/9.
 3  4  5  6
 !endtable
 see! only 3+3 results in 6. </textarea>
+      {%endif%}
       <br>
       <button class="btn btn-success" type="submit">Create Flashcards!</button>
       </form>

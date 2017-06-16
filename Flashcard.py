@@ -6,9 +6,12 @@ from flask import Flask, render_template, request, g, session, redirect
 import time
 import re
 
+class ParseError(Exception):
+    pass
+
 def handleRequest(request):
 	if request.method == "GET":
-		return render_template("flashcards_request.html", tag=str(time.time()))
+		return render_template("flashcards_request.html", err=False, tag=str(time.time()))
 	# otherwise it's a post
 	# get the raw data
 	title = request.form['title']
@@ -18,7 +21,11 @@ def handleRequest(request):
 	inputText = re.sub(r'\>', r'&lt;', inputText);
 	inputText = re.sub(r'\r', r'', inputText);
 	# process
-	flashcards = getFlashcards(inputText)
+	try:
+		flashcards = getFlashcards(inputText)
+	except ParseError as errMsg:
+		errMsgList = str(errMsg).split(":")
+		return render_template("flashcards_request.html", err=True, original=inputText, msg=errMsgList, tag=str(time.time()))
 	# render
 	return render_template("flashcards.html", tag=str(time.time()), title=title, flashcards=flashcards, count=len(flashcards))
 
@@ -50,6 +57,8 @@ def getFlashcards(inputText):
 	flashcards = []
 	for i,rawCard in enumerate(rawCards):
 		bits = rawCard.split(QASeperator)
+		if(len(bits) < 2):
+			raise ParseError("Malformed Card: \n"+rawCard)
 		question = compile(bits[0])
 		answer = compile(bits[1])
 		flashcards.append((question, answer, i))
