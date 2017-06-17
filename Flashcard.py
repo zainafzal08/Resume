@@ -17,8 +17,8 @@ def handleRequest(request):
 	title = request.form['title']
 	inputText = request.form['inputText']
 	# sanitise
-	inputText = re.sub(r'\<', r'&gt;', inputText);
-	inputText = re.sub(r'\>', r'&lt;', inputText);
+	inputText = re.sub(r'\<', r'&lt;', inputText);
+	inputText = re.sub(r'\>', r'&gt;', inputText);
 	inputText = re.sub(r'\r', r'', inputText);
 	# process
 	try:
