@@ -3,6 +3,7 @@ import Timer
 import time
 import BF_Machine
 import Flashcard
+import DeepImageCreator
 
 app = Flask(__name__)
 app.secret_key = 'B3Dvm1BJF1'
@@ -14,6 +15,10 @@ def index():
 @app.route('/timer', methods=['GET', 'POST'])
 def timer():
 	return Timer.handleRequest(request)
+
+@app.route('/DIC', methods=['GET', 'POST'])
+def dic():
+	return DeepImageCreator.handleRequest(request);
 
 @app.route('/flashcard', methods=['GET', 'POST'])
 def flashcard():
