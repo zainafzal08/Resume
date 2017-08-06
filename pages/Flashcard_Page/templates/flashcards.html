@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap_flat.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('flashcard.static',filename='flashcard.css')}}?v={{tag}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static',filename='nav.css')}}?v={{tag}}" type="text/css">
+    <script>
+      var totalCount = 0;
+      var rightCount = 0;
+      var allCount = {{count}};
+      function card_wrong(elem){
+        document.getElementById(elem+'_Q').style.background = 'rgba(231,76,60,0.2)';
+        document.getElementById(elem+'_A').classList.remove('flash-answers');
+        document.getElementById(elem+'_B').style.display = 'none';
+        totalCount++;
+        update_count_view();
+      }
+      function card_right(elem){
+        document.getElementById(elem).style.display = 'none';
+        totalCount++;
+        rightCount++;
+        update_count_view();
+      }
+      function update_count_view(){
+        document.getElementById("all_percentage").innerHTML = Math.round(totalCount/allCount*100);
+        document.getElementById("right_percentage").innerHTML = Math.round(rightCount/totalCount*100);
+      }
+    </script>
+  </head>
+  <body style="padding-left: 10%;padding-right: 10%;padding-top: 8%">
+  {{navBar|safe}}
+  <div class="row title">
+    <h1> {{title}} </h1>
+    <hr>
+    <h3 class="score"> Attempted: <span id="all_percentage">0</span>% | Correct: <span id="right_percentage">0</span>%</h3>
+  </div>
+  {%for card in flashcards%}
+  <div class="row" id="{{card[2]}}">
+    <div class="col-md-4">
+      <div class="panel panel-info" id="{{card[2]}}_Q">
+        <div class="panel-body">
+         {{card[0]|safe}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-info">
+        <div id="{{card[2]}}_A" class="panel-body flash-answers">
+          {{card[1]|safe}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div id="{{card[2]}}_B"style="padding-top: 12%">
+        <button class="btn btn-danger btn-xs" onclick="card_wrong('{{card[2]}}')">Wrong</button>
+        <button class="btn btn-success btn-xs" onclick="card_right('{{card[2]}}')">Right</button>
+      </div>
+    </div>
+    <br>
+  </div>
+  {% endfor %}
+  </body>
+</html>

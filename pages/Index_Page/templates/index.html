@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Zain Afzal</title>
+		<link rel="stylesheet" href="{{url_for('static',filename='bootstrap.css')}}" type="text/css">
+		<link rel="stylesheet" href="{{url_for('indexPage.static',filename='index.css')}}?v={{t}}" type="text/css">
+		<link rel="stylesheet" href="{{url_for('static',filename='nav.css')}}?v={{t}}" type="text/css">
+		<script type="text/javascript" src="{{url_for('static',filename='velocity.js')}}"></script>
+		<script type="text/javascript" src="{{url_for('indexPage.static',filename='index.js')}}?v={{t}}"></script>
+	</head>
+	<body onload="calibrateView({{prjLen}})" onresize="calibrateView({{prjLen}})" onscroll="updateNav()">
+		<div class="background" style="background-image: url({{backImg['src']}});"></div>
+		<div class="background overlay" style="background-image: url('{{url_for('indexPage.static',filename='overlay.png')}}?v={{t}}')"></div>
+		<a class="img-link" href="{{backImg['credit']}}">Image Credit</a>
+		{{navBar|safe}}
+		<div id="arrow" class="arrow"></div>
+		<div id="welcome-block" class="welcome-block">
+			<div class="row vertical-align">
+				<div id="welcome-title" class="col-md-offset-2 col-xs-offset-2 col-lg-offset-2 col-md-8 col-xs-8 col-lg-8 welcome-title">
+					<h1> Zain Afzal </h1>
+					<hr>
+					<div class="social-link-wrapper">
+						<a href="https://github.com/zainafzal08"><img class="social-link left" src="{{url_for('indexPage.static', filename='github.png')}}?v={{t}}"></a>
+						<a href="https://www.linkedin.com/in/zain-afzal-561262117/"><img class="social-link middle" src="{{url_for('indexPage.static', filename='linkedin.png')}}"></a>
+						<a href="mailto:zain.afz@gmail.com"><img class="social-link right" src="{{url_for('indexPage.static', filename='email.png')}}"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="about-block-seperator" class="about-block-seperator"></div>
+		<div id="about-block" class="about-block">
+			<div class="about-title">
+				<h2> About me </h2>
+				<hr>
+			</div>
+			<div class="about-text">
+				<h4> Just your friendly neighbourhood uni stduent who loves building software. </h4>
+			</div>
+		</div>
+			<div id="project-block-seperator" class="project-block-seperator"></div>
+			<div id="project-block" class="project-block container">
+				<div class="project-block-title">
+					<h2>Projects</h2>
+					<hr>
+				</div>
+				<div class="row">
+					{% for p in projects %}
+					<div class="col-md-4 col-sm-6 col-lg-3 col-xs-12">
+						<div id="project-card-{{loop.index}}-container" class="project-card-container">
+							<div id="project-card-{{loop.index}}" class="project-card z-2">
+								<div class="project-card-title">
+									<div class="project-icon project-green z-1"><h1>{{p.letter}}</h1></div>
+									<h3> {{p.name}} </h3>
+									<hr>
+								</div>
+								<div class="project-card-content">
+									<h6>{{p.desc}}</h6>
+								</div>
+								<div class="project-card-links">
+									{%for l in p.links%}
+									<a href="{{l[1]}}">{{l[0]}}</a>
+									{%endfor%}
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+		</div>
+		<div id="footer-block-seperator" class="footer-block-seperator"></div>
+		<div id="footer-block" class="footer-block">
+
+		</div>
+	</body>
+</html>

@@ -1,32 +1,21 @@
 from flask import Flask, render_template, request, g, session, redirect
-import Timer
-import time
-import BF_Machine
-import Flashcard
-import DeepImageCreator
-
+from pages.DIC_Page.DIC import dic
+from pages.Timer_Page.Timer import timer
+from pages.Index_Page.Index import indexPage
+from pages.Flashcard_Page.Flashcard import flashcard
+from pages.BFD_Page.BF_Machine import bfd
 app = Flask(__name__)
 app.secret_key = 'B3Dvm1BJF1'
 
-@app.route('/', methods=['GET', 'POST'])
+app.register_blueprint(dic,url_prefix='/dic')
+app.register_blueprint(timer,url_prefix='/timer')
+app.register_blueprint(indexPage,url_prefix='/index')
+app.register_blueprint(flashcard,url_prefix='/flashcard')
+app.register_blueprint(bfd,url_prefix='/bfd')
+
+@app.route('/')
 def index():
-	return render_template("index.html", tag=str(time.time()))
+	return redirect("/index", code=302)
 
-@app.route('/timer', methods=['GET', 'POST'])
-def timer():
-	return Timer.handleRequest(request)
-
-@app.route('/DIC', methods=['GET', 'POST'])
-def dic():
-	return DeepImageCreator.handleRequest(request);
-
-@app.route('/flashcard', methods=['GET', 'POST'])
-def flashcard():
-	return Flashcard.handleRequest(request)
-
-@app.route('/BFD', methods=['GET', 'POST'])
-def BFD():
-	return BF_Machine.handleRequest(request, 80, session)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
 	app.run(debug=True)

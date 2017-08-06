@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Deep Image Creator</title>
+		<link rel="stylesheet" href="{{url_for('static',filename='bootstrap.css')}}" type="text/css">
+		<link rel="stylesheet" href="{{url_for('dic.static',filename='dic.css')}}?v={{t}}" type="text/css">
+		<link rel="stylesheet" href="{{url_for('static',filename='nav.css')}}?v={{t}}" type="text/css">
+		<script type="text/javascript" src="{{url_for('static',filename='velocity.js')}}"></script>
+		<script type="text/javascript" src="{{url_for('dic.static',filename='dic.js')}}?v={{t}}"></script>
+	</head>
+	<body>
+		<div class="background" style="background-image: url('{{backImg['src']}}')"></div>
+		<div class="overlay" style="background-image: url('{{url_for('dic.static',filename='overlay.png')}}?v={{t}}')"></div>
+		{{navBar|safe}}
+		<div class="title-container">
+			<div class="top">
+				<span id="top" onclick="closeLink()" contenteditable="true">{{top}}</span>
+			</div>
+			<hr>
+			<div class="bottom">
+				<span id="bottom" onclick="closeLink()" contenteditable="true">{{bot}}</span>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="left">
+				<!-- Link icon by Icons8 -->
+				<input id="url_link">
+				<img src="{{url_for('static',filename='link.png')}}?v={{t}}" title="Link" class="link" onclick="toggle()">
+			</div>
+			<div class="right">
+				<a href="https://icons8.com/icon/91/Link">Icon credit</a>
+				<span style="color: white"> || </span>
+				<a href="{{backImg['credit']}}">Image credit</a>
+			</div>
+		</div>
+	</body>
+</html>
