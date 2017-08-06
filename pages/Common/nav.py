@@ -69,47 +69,43 @@ def initalise(name,link):
 	globalNav.addProject("Subleq","S",desc,links)
 
 	desc="A simple, beautiful, countdown timer whose background changes every day or so! Works via the Reddit Image script"
-	links=[("Live","/timer"),("Github","TBA")]
+	links=[("Live","/timer"),("Github","https://github.com/zainafzal08/Resume/tree/master/pages/Timer_Page")]
 	globalNav.addProject("Timer","T",desc,links)
 
 	desc="A simple, text to html flashcards app to help you study!"
-	links=[("Live","/flashcard"),("Github","TBA")]
+	links=[("Live","/flashcard"),("Github","https://github.com/zainafzal08/Resume/tree/master/pages/Flashcard_Page")]
 	globalNav.addProject("Flashcard","F",desc,links)
 
 	desc="A sharable stunning image from the Reddit Image script that you can overlay text on. Affectionately dubbed 'Deep Image Creator'"
-	links=[("Live","/dic"),("Github","TBA")]
+	links=[("Live","/dic"),("Github","https://github.com/zainafzal08/Resume/tree/master/pages/DIC_Page")]
 	globalNav.addProject("Poster Maker","P",desc,links)
 
 	desc="A debugging/runtime environment for the BF esoteric programming language"
-	links=[("Live","/bfd"),("Github","TBA")]
+	links=[("Live","/bfd"),("Github","https://github.com/zainafzal08/Resume/tree/master/pages/BFD_Page")]
 	globalNav.addProject("BFD","B",desc,links)
 
 	desc="A custom designed instruction set, run in python"
-	links=[("Docs","TBA"),("Github","TBA")]
+	links=[("Docs","https://github.com/zainafzal08/General_VM/blob/master/docs/VM_Documentation_v1.md"),("Github","https://github.com/zainafzal08/General_VM")]
 	globalNav.addProject("General VM","V",desc,links)
 
 	desc="The html, css, js and back end flask code used in this very site"
-	links=[("Live","/"),("Github","TBA")]
+	links=[("Live","/"),("Github","https://github.com/zainafzal08/Resume")]
 	globalNav.addProject("This Site","W",desc,links)
 
 	desc="Markdown notes for some of the courses i've taken at UNSW"
-	links=[("Github","TBA")]
-	globalNav.addProject("Notes","N",desc,links)
-
-	desc="Markdown notes for some of the courses i've taken at UNSW"
-	links=[("Github","TBA")]
+	links=[("Github","https://github.com/zainafzal08/Notes")]
 	globalNav.addProject("Notes","N",desc,links)
 
 	desc="Some cool things i've build in the C programming language"
-	links=[("Github","TBA")]
+	links=[("Crypto","https://github.com/zainafzal08/Crypto"),("Generic Data","https://github.com/zainafzal08/GenericData")]
 	globalNav.addProject("C Code","C",desc,links)
 
 	desc="A collection of cool code and a script or two that don't fit into their own project"
-	links=[("Github","TBA")]
+	links=[("Github","https://github.com/zainafzal08/CoolStuff")]
 	globalNav.addProject("Cool Stuff","C",desc,links)
 
 	desc="A small script to search and find a beautiful image from reddit given constraints. Used on this page, Timer and Poster Maker"
-	links=[("Github","TBA")]
+	links=[("Github","https://github.com/zainafzal08/Resume/blob/master/pages/Common/redditImageScraper.py")]
 	globalNav.addProject("Reddit Image","R",desc,links)
 
 def register(temp,name,link):
