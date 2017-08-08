@@ -31,3 +31,9 @@ function closeLink(){
 		toggle();
 	}
 }
+
+function textBlur(elem){
+	var title = document.getElementById(elem).innerHTML;
+	title = title.replace(/\<[^\<\>]*\>/g," ");
+	document.getElementById(elem).innerHTML = title;
+}

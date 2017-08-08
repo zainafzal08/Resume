@@ -15,11 +15,11 @@
 		{{navBar|safe}}
 		<div class="title-container">
 			<div class="top">
-				<span id="top" onclick="closeLink()" contenteditable="true">{{top}}</span>
+				<span id="top" onblur="textBlur('top')" onclick="closeLink()" contenteditable="true">{{top}}</span>
 			</div>
 			<hr>
 			<div class="bottom">
-				<span id="bottom" onclick="closeLink()" contenteditable="true">{{bot}}</span>
+				<span id="bottom" onblur="textBlur('bottom')" onclick="closeLink()" contenteditable="true">{{bot}}</span>
 			</div>
 		</div>
 		<div class="footer">
