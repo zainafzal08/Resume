@@ -2,7 +2,7 @@
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
-	height: 52px;
+	/*height: 52px;*/
 	border-top: rgba(235,235,235,0.2) solid 1px;
 	border-bottom: rgba(235,235,235,0.2) solid 1px;
 	position: fixed;
