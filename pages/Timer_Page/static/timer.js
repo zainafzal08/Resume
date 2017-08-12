@@ -168,6 +168,8 @@ function clockTimeFocus(){
 }
 
 function startClock(){
+	if(running)
+		return;
 	if(!changed){
 		if(!locked){
 			running = true;
@@ -224,6 +226,7 @@ function progressClock(){
 		document.getElementById('clock-time').innerHTML = hours+":"+minutes+":"+seconds;
 	}
 }
+
 function pauseClock(){
 	if(running){
 		running = false;
@@ -323,3 +326,4 @@ function setArcFour(angle,col){
 	var newVal = "m3 150 a144 144 0 0 1 " +x.toString() +" " + y.toString();
 	arc4.setAttribute("d", newVal);
 }
+
