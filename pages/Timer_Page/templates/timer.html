@@ -10,7 +10,7 @@
 		<script type="text/javascript" src="{{url_for('timer.static',filename='timer.js')}}?v={{t}}"></script>
 	</head>
 	<body onload="setDefaults()" onresize="updateClockPosition()">
-		<div class="background" style="background-image: url('{{backImg['src']}}')"></div>
+		<div id="background-div" class="background" style="background-image:"></div>
 		<div class="overlay" style="background-image: url('{{url_for('timer.static',filename='overlay.png')}}?v={{t}}')"></div>
 		{{navBar|safe}}
 		<div class="content">
@@ -51,7 +51,7 @@
 			<div class="right">
 				<a href="https://icons8.com/icon/91/Link">Icon credit</a>
 				<span style="color: white"> || </span>
-				<a href="{{backImg['credit']}}">Image credit</a>
+				<a id="img-credit" href="">Image credit</a>
 			</div>
 		</div>
 	</body>

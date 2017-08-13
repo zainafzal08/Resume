@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template
 import time
 from ..Common import redditImageScraper
 from ..Common import nav
+import json
 
 nav.register("projects","Timer","/timer")
 timer = Blueprint('timer', __name__, template_folder='templates', static_folder='static')
@@ -9,11 +10,17 @@ timer = Blueprint('timer', __name__, template_folder='templates', static_folder=
 @timer.route('/')
 def index():
 	navBar = nav.getNav().render("projects",'Timer')
-	if "offline" in request.args:
-		img = {
-			"src":"/static/test.jpg",
-			"credit":"google"
-		}
+	return render_template('timer.html',navBar=navBar,t=str(time.time()))
+
+@timer.route('/imgRequest')
+def imgRequest():
+	try:
+		w = int(request.args['w'])
+		h = int(request.args['h'])
+	except:
+		abort(404)
+	img = redditImageScraper.simpleSearch(w,h)
+	if img != None:
+		return json.dumps(img)
 	else:
-		img = redditImageScraper.getSimpleBackImage()
-	return render_template('timer.html',backImg=img,navBar=navBar,t=str(time.time()))
+		abort(404)

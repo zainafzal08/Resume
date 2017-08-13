@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template
 import time
 from ..Common import redditImageScraper
 from ..Common import nav
+import json
 
 nav.register("projects","DIC","/dic")
 dic = Blueprint('dic', __name__, template_folder='templates', static_folder='static')
@@ -15,13 +16,17 @@ def index():
 	else:
 		top = "CLICK ME"
 		bot = "EDIT ME"
+	return render_template('DIC.html',top=top,bot=bot,navBar=navBar,t=str(time.time()))
 
-	if "offline" in request.args:
-		img = {
-			"src":"/static/test.jpg",
-			"credit":"google"
-		}
+@dic.route('/imgRequest')
+def imgRequest():
+	try:
+		w = int(request.args['w'])
+		h = int(request.args['h'])
+	except:
+		abort(404)
+	img = redditImageScraper.simpleSearch(w,h)
+	if img != None:
+		return json.dumps(img)
 	else:
-		img = redditImageScraper.getSimpleBackImage()
-	return render_template('DIC.html',top=top,bot=bot,backImg=img,navBar=navBar,t=str(time.time()))
-
+		abort(404)

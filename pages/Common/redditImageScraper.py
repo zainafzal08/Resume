@@ -71,6 +71,20 @@ def getInstaImg(url,w,h):
 		return imgSrc.group(1)
 	return None
 
+def simpleSearch(w,h):
+	searchSize = 10
+	img = None
+	settings = {}
+	settings['minW'] = w-200
+	settings['minH'] = h-200
+	settings['maxW'] = w+1000
+	settings['maxH'] = h+1000
+	settings['minAR'] = 1.5
+	settings['maxAR'] = 3
+	while img == None and searchSize <= 200:
+		img = getNewImage(searchSize,settings);
+		searchSize*=2
+	return img
 def getSimpleBackImage():
 	searchSize = 10
 	img = None
@@ -82,7 +96,10 @@ def getSimpleBackImage():
 	settings['minAR'] = 1.5
 	settings['maxAR'] = 3
 	while img == None and searchSize <= 200:
-		img = getNewImage(searchSize,settings);
+		try:
+			img = getNewImage(searchSize,settings);
+		except():
+			break
 		searchSize*=2
 	if img == None:
 		img = {
