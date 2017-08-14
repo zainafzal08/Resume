@@ -41,7 +41,7 @@ function textBlur(elem){
 function getBackgroundImage(){
 	var width = document.documentElement.clientWidth;
 	var height = document.documentElement.clientHeight;
-	var base = window.location.href;
+	var base = window.location.href.split("?")[0];
 	var url = base+"imgRequest?w="+width+"&h="+height;
 	try{
 		httpGetAsync(url,setBackgroundImg);
