@@ -44,6 +44,14 @@ a{
 	display: inline-block;
 	min-width: 1em;
 }
+.top input{
+	background-color: rgba(0,0,0,0);
+	border: none;
+}
+.bottom input{
+	background-color: rgba(0,0,0,0);
+	border: none;
+}
 #top:focus{
 	outline: none;
 	border: none;

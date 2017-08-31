@@ -32,12 +32,6 @@ function closeLink(){
 	}
 }
 
-function textBlur(elem){
-	var title = document.getElementById(elem).innerHTML;
-	title = title.replace(/\<[^\<\>]*\>/g," ");
-	document.getElementById(elem).innerHTML = title;
-}
-
 function getBackgroundImage(){
 	var width = document.documentElement.clientWidth;
 	var height = document.documentElement.clientHeight;
