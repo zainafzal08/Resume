@@ -6,7 +6,6 @@
 		<link rel="stylesheet" href="{{url_for('static',filename='bootstrap.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{url_for('indexPage.static',filename='index.css')}}?v={{t}}" type="text/css">
 		<link rel="stylesheet" href="{{url_for('static',filename='nav.css')}}?v={{t}}" type="text/css">
-		<script type="text/javascript" src="{{url_for('static',filename='velocity.js')}}"></script>
 		<script type="text/javascript" src="{{url_for('indexPage.static',filename='index.js')}}?v={{t}}"></script>
 		<!-- Google analytics -->
 		<script>
@@ -83,5 +82,7 @@
 		<div id="footer-block" class="footer-block">
 
 		</div>
+		<script type="text/javascript" src="{{url_for('static',filename='velocity.js')}}"></script>
+		<script src="{{url_for('static',filename='zenscroll-min.js')}}"></script>
 	</body>
 </html>

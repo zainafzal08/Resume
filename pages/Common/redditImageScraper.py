@@ -79,12 +79,13 @@ def simpleSearch(w,h):
 	settings['minH'] = h-200
 	settings['maxW'] = w+1000
 	settings['maxH'] = h+1000
-	settings['minAR'] = 1.5
+	settings['minAR'] = w/h - 0.3
 	settings['maxAR'] = 3
 	while img == None and searchSize <= 200:
 		img = getNewImage(searchSize,settings);
 		searchSize*=2
 	return img
+
 def getSimpleBackImage():
 	searchSize = 10
 	img = None

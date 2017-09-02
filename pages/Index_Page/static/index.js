@@ -73,8 +73,8 @@ function triggerLightNav(){
 function getBackgroundImage(){
 	var width = document.documentElement.clientWidth;
 	var height = document.documentElement.clientHeight;
-	var base = window.location.href;
-	var url = base+"imgRequest?w="+width+"&h="+height;
+	// hardcoding this for now to remove issues with window.href
+	var url = "/index/"+"imgRequest?w="+width+"&h="+height;
 	try{
 		httpGetAsync(url,setBackgroundImg);
 	}catch(err){
