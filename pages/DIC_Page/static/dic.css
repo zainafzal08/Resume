@@ -36,6 +36,7 @@ a{
 	color: white;
 	display: inline-block;
 	min-width: 1em;
+	width: 80%;
 }
 #bottom{
 	font-size: 1.9em;
@@ -43,6 +44,7 @@ a{
 	color: white;
 	display: inline-block;
 	min-width: 1em;
+	width: 80%;
 }
 .top input{
 	background-color: rgba(0,0,0,0);
