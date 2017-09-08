@@ -15,14 +15,14 @@
 		{{navBar|safe}}
 		<div class="content">
 			<div class="title">
-				<span id="title-text" contenteditable="true" onblur="titleBlur()" onfocus="titleFocus()">Hello</span>
+				<span id="title-text" contenteditable="true" onblur="titleChange()" onfocus="titleFocus()">Hello</span>
 				<hr id="title-underline">
 			</div>
 			<button id="startBtn" onclick="startClock()" class="btn btn-default">Start</button>
 			<button id="pauseBtn" onclick="pauseClock()" class="btn btn-default">Pause</button>
 			<button id="resetBtn" onclick="resetClock()" class="btn btn-default">Reset</button>
 			<svg id="clock-svg" class="clock-svg">
-				<circle cx="150" cy="150" r="150" fill="rgba(235,235,235,0.2)" />
+				<circle style="opacity: 0.2" id="clock-back" cx="150" cy="150" r="150" fill="rgb(235,235,235)" />
 				<g>
 					<path id="arc1" d="m150 3 a144 144 0 0 1 0 0" stroke="#2196f3" stroke-width="5" fill="none"></path>
 				</g>
@@ -37,21 +37,21 @@
 				</g>
 			</svg>
 			<span id="clock-time" onblur="clockTimeBlur()" onfocus="clockTimeFocus()" class="clock-time" contenteditable="true">00:10:00</span>
-
 		</div>
 		<div>
 			<span id="error-container" class="error-container"></span>
 		</div>
 		<div class="footer">
-			<div class="left">
+			<div id="left" class="left">
 				<!-- Link icon by Icons8 -->
 				<input id="url_link">
 				<img src="{{url_for('static',filename='link.png')}}?v={{t}}" title="Link" class="link" onclick="toggle()">
 			</div>
-			<div class="right">
+			<div id="right" class="right">
 				<a href="https://icons8.com/icon/91/Link">Icon credit</a>
 				<span style="color: white"> || </span>
 				<a id="img-credit" href="">Image credit</a>
+				<span style="color: white"> || Press F to Focus</span>
 			</div>
 		</div>
 	</body>

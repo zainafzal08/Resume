@@ -6,6 +6,58 @@ var timeLeft = 0;
 var interval = null;
 var locked = false;
 var changed = true;
+var focusToggled = false;
+var focusAnimating = false;
+
+document.onkeypress = function (e) {
+    e = e || window.event;
+    var charCode = e.keyCode || e.which;
+    // 13 is the enter button lol
+    if(charCode == 13){
+    	cleanTitle();
+    	document.getElementById("title-text").blur();
+    	document.getElementById("clock-time").blur();
+    // this is 'F'
+    }else if(charCode == 102){
+    	focusScreen();
+    }else{
+    	titleChange();
+    }
+};
+
+function focusScreen(){
+	if(focusAnimating)
+		return
+	if(focusToggled){
+		focusToggled = false;
+		focusAnimating = true;
+		var navbar = document.getElementById('nav-bar');
+		var link = document.getElementById('left');
+		var info = document.getElementById('right');
+		var background = document.getElementById('background-div');
+		var clkBackground = document.getElementById('clock-back');
+		Velocity(navbar, { opacity: 1}, { duration: 1000 });
+		Velocity(link, { opacity: 1}, { duration: 1000 });
+		Velocity(info, { opacity: 1}, { duration: 1000 });
+		Velocity(background, { blur: 0}, { duration: 1000 });
+		Velocity(clkBackground, { opacity: 0.2}, { duration: 1000 });
+		setTimeout(function(){ focusAnimating = false }, 1200);
+	}else{
+		focusToggled = true;
+		focusAnimating = true;
+		var navbar = document.getElementById('nav-bar');
+		var link = document.getElementById('left');
+		var info = document.getElementById('right');
+		var background = document.getElementById('background-div');
+		var clkBackground = document.getElementById('clock-back');
+		Velocity(navbar, { opacity: 0}, { duration: 1000 });
+		Velocity(link, { opacity: 0}, { duration: 1000 });
+		Velocity(info, { opacity: 0}, { duration: 1000 });
+		Velocity(background, { blur: 3}, { duration: 1000 });
+		Velocity(clkBackground, { opacity: 0.4}, { duration: 1000 });
+		setTimeout(function(){ focusAnimating = false }, 1200);
+	}
+}
 
 function toggle(){
 	if(blocked)
@@ -37,10 +89,12 @@ function titleFocus(){
 	pauseClock();
 }
 
-function titleBlur(){
+function cleanTitle(){
 	var title = document.getElementById("title-text").innerHTML;
 	title = title.replace(/\<[^\<\>]*\>/g," ");
 	document.getElementById("title-text").innerHTML = title;
+}
+function titleChange(){
 	updateClockPosition();
 }
 function getURL(){
