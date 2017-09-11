@@ -6,10 +6,8 @@
 		<link rel="stylesheet" href="{{url_for('static',filename='bootstrap.css')}}" type="text/css">
 		<link rel="stylesheet" href="{{url_for('timer.static',filename='timer.css')}}?v={{t}}" type="text/css">
 		<link rel="stylesheet" href="{{url_for('static',filename='nav.css')}}?v={{t}}" type="text/css">
-		<script type="text/javascript" src="{{url_for('static',filename='velocity.js')}}"></script>
-		<script type="text/javascript" src="{{url_for('timer.static',filename='timer.js')}}?v={{t}}"></script>
 	</head>
-	<body onload="setDefaults()" onresize="updateClockPosition()">
+	<body onresize="updateClockPosition()">
 		<div id="background-div" class="background" style="background-image:"></div>
 		<div class="overlay" style="background-image: url('{{url_for('timer.static',filename='overlay.png')}}?v={{t}}')"></div>
 		{{navBar|safe}}
@@ -54,5 +52,7 @@
 				<span style="color: white"> || Press F to Focus</span>
 			</div>
 		</div>
+		<script type="text/javascript" src="{{url_for('static',filename='velocity.js')}}"></script>
+		<script type="text/javascript" src="{{url_for('timer.static',filename='timer.js')}}?v={{t}}"></script>
 	</body>
 </html>

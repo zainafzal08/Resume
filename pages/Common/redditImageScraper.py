@@ -18,12 +18,14 @@ def dimentionsCorrect(w,h,settings):
 	aspect = float(w)/float(h)
 	if aspect >= minAR and aspect <= maxAR:
 		aspectCorrect = True
+
 	return sizeCorrect and aspectCorrect
 
 def getNewImage(searchSize, settings):
 	reddit = praw.Reddit(client_id='d1WOmr6R1RnV7g', client_secret='pLdRL1mQlb9Cwbb1zqjm31une_A', user_agent='web:redditImageScraper:v1 (by /u/zain_afz)')
 	chosenSubmission = None
-	for submission in reddit.subreddit('EarthPorn').new(limit=searchSize):
+	options = reddit.subreddit('EarthPorn').new(limit=searchSize)
+	for submission in options:
 		sizeStr = re.search(r'\[(\d+)x(\d+)\]', submission.title);
 		w = -1
 		h = -1
@@ -84,6 +86,11 @@ def simpleSearch(w,h):
 	while img == None and searchSize <= 200:
 		img = getNewImage(searchSize,settings);
 		searchSize*=2
+	if img == None:
+		img = {
+			"src": "http://cdn.wallpapersafari.com/17/34/42nLhc.jpg",
+			"credit" : "https://wallpapersafari.com/free-mountain-wallpaper-backgrounds/"
+		}
 	return img
 
 def getSimpleBackImage():

@@ -1,30 +1,44 @@
-var toggled = false;
-var blocked = false;
-var prevClock = "00:10:00";
-var running = false;
-var timeLeft = 0;
-var interval = null;
-var locked = false;
-var changed = true;
-var focusToggled = false;
-var focusAnimating = false;
+let toggled = false;
+let blocked = false;
+let prevClock = "00:10:00";
+let running = false;
+let timeLeft = 0;
+let interval = null;
+let locked = false;
+let changed = true;
+let focusToggled = false;
+let focusAnimating = false;
 
-document.onkeypress = function (e) {
-    e = e || window.event;
-    var charCode = e.keyCode || e.which;
+// Key triggered events
+
+window.onload = function(){
+	setDefaults();
+	document.getElementById('title-text').addEventListener('keydown', handleKeyDown);
+	document.getElementById('clock-time').addEventListener('keydown', handleKeyDown);
+}
+
+document.onkeypress = handleKeyDown;
+
+function handleKeyDown(e=window.event){
+	const charCode = e.keyCode || e.which;
+	const title = document.getElementById("title-text");
+	const clockText = document.getElementById("clock-time");
+
     // 13 is the enter button lol
-    if(charCode == 13){
-    	cleanTitle();
-    	document.getElementById("title-text").blur();
-    	document.getElementById("clock-time").blur();
-    // this is 'F'
-    }else if(charCode == 102){
-    	focusScreen();
-    }else{
-    	titleChange();
-    }
-};
+	if(charCode == 13){
+		cleanTitle();
+		title.blur();
+		clockText.blur();
+	// this is 'F'
+	}else if(charCode == 102 && title !== document.activeElement && clockText !== document.activeElement){
+		focusScreen();
+	}else{
+		titleChange();
+		updateClockPosition(null);
+	}
+}
 
+// functions
 function focusScreen(){
 	if(focusAnimating)
 		return
@@ -158,16 +172,21 @@ function orientUI(){
 	var ulLeft = parseInt(ul.style.left.match(/\d+/));
 	var ulTop = parseInt(ul.style.top.match(/\d+/));
 	var btnTop = ulTop+ul.offsetHeight+40;
+	var l = -1;
+
 	btnTop+="px"
     var start = document.getElementById("startBtn");
     start.style.top = btnTop;
-    start.style.left = (ulLeft - (start.offsetWidth/2))+"px";
+    l = (ulLeft - (start.offsetWidth/2));
+    start.style.left = l+"px";
     var pause = document.getElementById("pauseBtn");
+	l = (ulLeft + ul.offsetWidth - (pause.offsetWidth/2));
     pause.style.top = btnTop;
-    pause.style.left = (ulLeft + ul.offsetWidth - (pause.offsetWidth/2))+"px";
+    pause.style.left = l+"px";
     var reset = document.getElementById("resetBtn");
+    l = (ulLeft + (ul.offsetWidth/2) - (reset.offsetWidth/2));
     reset.style.top = btnTop;
-    reset.style.left = (ulLeft + (ul.offsetWidth/2) - (reset.offsetWidth/2))+"px";
+    reset.style.left = l+"px";
 }
 function orientClock(){
     var back = document.getElementById("clock-svg");
@@ -202,7 +221,7 @@ function clockTimeBlur(){
 	// if time is not valid, raise error and default to 10:00:00
 	// this should enforce that whenever start is clicked the time
 	// is valid. 
-	var re = /\d+\:\d+\:\d+/g;
+	var re = /^\d+\:\d+\:\d+$/;
 	var res = elem.innerHTML.match(re);
 	if(elem.innerHTML.length == 0 || res == null){
 		elem.innerHTML = prevClock;
