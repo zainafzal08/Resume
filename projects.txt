@@ -1,0 +1,96 @@
+[{
+    "title": "Subleq",
+    "letter": "S",
+    "desc": "A puzzle game revolving around a single instruction set arcitecture machine built with a friend.",
+    "links": [
+        {"text":"Live","url":"http://subleq.herokuapp.com/"},
+        {"text":"Riyasat","url":"http://riyasatsaber.com/"},
+        {"text":"Github","url":"https://github.com/rsaber/subleq"}
+    ]
+},
+{
+    "title": "Timer",
+    "letter": "T",
+    "desc": "A simple, beautiful, countdown timer whose background changes every day or so! Works via the Reddit Image script",
+    "links": [
+        {"text":"Live","url":"/timer"},
+        {"text":"Github","url":"https://github.com/zainafzal08/Resume/tree/master/pages/Timer_Page"}
+    ]
+},
+{
+    "title": "Flashcard",
+    "letter": "F",
+    "desc": "A simple, text to html flashcards app to help you study!",
+    "links": [
+        {"text":"Live","url":"/flashcard"},
+        {"text":"Github","url":"https://github.com/zainafzal08/Resume/tree/master/pages/Flashcard_Page"}
+    ]
+},
+{
+    "title": "Poster Maker",
+    "letter": "P",
+    "desc": "A sharable stunning image from the Reddit Image script that you can overlay text on. Affectionately dubbed 'Deep Image Creator'",
+    "links": [
+        {"text":"Live","url":"/dic"},
+        {"text":"Github","url":"https://github.com/zainafzal08/Resume/tree/master/pages/DIC_Page"}
+    ]
+},
+{
+    "title": "BFD",
+    "letter": "B",
+    "desc": "A debugging/runtime environment for the BF esoteric programming language",
+    "links": [
+        {"text":"Live","url":"/bfd"},
+        {"text":"Github","url":"https://github.com/zainafzal08/Resume/tree/master/pages/BFD_Page"}
+    ]
+},
+{
+    "title": "General VM",
+    "letter": "V",
+    "desc": "A custom designed instruction set, run in python",
+    "links": [
+        {"text":"Docs","url":"https://github.com/zainafzal08/General_VM/blob/master/docs/VM_Documentation_v1.md"},
+        {"text":"Github","url":"https://github.com/zainafzal08/General_VM"}
+    ]
+},
+{
+    "title": "This Site",
+    "letter": "W",
+    "desc": "The html, css, js and back end flask code used in this very site",
+    "links": [
+        {"text": "Github", "url": "https://github.com/zainafzal08/Resume"}
+    ]
+},
+{
+    "title": "Notes",
+    "letter": "N",
+    "desc": "Markdown notes for some of the courses i've taken at UNSW",
+    "links": [
+        {"text": "Github", "url": "https://github.com/zainafzal08/Notes"}
+    ]
+},
+{
+    "title": "C Code",
+    "letter": "C",
+    "desc": "Some cool things i've build in the C programming language",
+    "links": [
+        {"text":"Crypto","url":"https://github.com/zainafzal08/Crypto"},
+        {"text": "Generic Data","url": "https://github.com/zainafzal08/GenericData"}
+    ]
+},
+{
+    "title": "Cool Stuff",
+    "letter": "C",
+    "desc": "A collection of cool code and a script or two that don't fit into their own project",
+    "links": [
+        {"text": "Github", "url": "https://github.com/zainafzal08/CoolStuff"}
+    ]
+},
+{
+    "title": "Reddit Image Scrapper",
+    "letter": "R",
+    "desc": "A small script to search and find a beautiful image from reddit given constraints. Used on this page, Timer and Poster Maker",
+    "links": [
+    {"text":"Github","url":"https://github.com/zainafzal08/Resume/blob/master/pages/Common/redditImageScraper.py"}
+    ]
+}]

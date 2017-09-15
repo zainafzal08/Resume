@@ -294,7 +294,7 @@ function progressClock(){
 		var minutes = Math.floor((timeLeft - hours*3600)/60);
 		if(minutes < 10)
 			minutes = "0"+minutes;
-		var seconds = timeLeft % 60;
+		var seconds = timeLeft - minutes*60;
 		if(seconds < 10)
 			seconds = "0"+seconds;
 		document.getElementById('clock-time').innerHTML = hours+":"+minutes+":"+seconds;

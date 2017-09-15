@@ -5,9 +5,7 @@ import random
 from flask import Flask, render_template, request, g, session, redirect, Blueprint
 import time
 import re
-from ..Common import nav
 
-nav.register("projects","Flashcard","/flashcard")
 flashcard = Blueprint('flashcard', __name__, template_folder='templates', static_folder='static')
 
 @flashcard.route('/',methods=["GET","POST"])
@@ -18,9 +16,8 @@ class ParseError(Exception):
     pass
 
 def handleRequest(request):
-	navBar = nav.getNav().render("projects",'Flashcard', dark=True)
 	if request.method == "GET":
-		return render_template("flashcards_request.html", navBar=navBar, err=False, tag=str(time.time()))
+		return render_template("flashcards_request.html", err=False, tag=str(time.time()))
 	# otherwise it's a post
 	# get the raw data
 	title = request.form['title']
@@ -34,9 +31,9 @@ def handleRequest(request):
 		flashcards = getFlashcards(inputText)
 	except ParseError as errMsg:
 		errMsgList = str(errMsg).split(":")
-		return render_template("flashcards_request.html", navBar=navBar, err=True, original=inputText, msg=errMsgList, tag=str(time.time()))
+		return render_template("flashcards_request.html", err=True, original=inputText, msg=errMsgList, tag=str(time.time()))
 	# render
-	return render_template("flashcards.html", navBar=navBar, tag=str(time.time()), title=title, flashcards=flashcards, count=len(flashcards))
+	return render_template("flashcards.html", tag=str(time.time()), title=title, flashcards=flashcards, count=len(flashcards))
 
 
 def multiSplit(text, sep):
@@ -58,6 +55,7 @@ def multiSplit(text, sep):
 	if(len(buffer) > 0):
 		result.append("".join(buffer))
 	return result
+
 # must return an array of question, answer, string tuples
 def getFlashcards(inputText):
 	cardSeperator = "\n\n"

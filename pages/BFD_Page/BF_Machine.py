@@ -1,11 +1,9 @@
 import re
 import sys
 from flask import Flask, render_template, request, g, session, redirect, Blueprint
-from ..Common import nav
 import time
 
 
-nav.register("projects","BFD","/bfd")
 bfd = Blueprint('bfd', __name__, template_folder='templates', static_folder='static')
 
 @bfd.route('/',methods=["POST","GET"])
@@ -40,7 +38,7 @@ def handleRequest(request, memSize, session):
 	navBar = nav.getNav().render("projects",'BFD',dark=True)
 	if request.method == "GET":
 		session['pc'] = -1
-		return render_template("BFDIN.html",navBar=navBar,t=str(time.time()))
+		return render_template("BFDIN.html",t=str(time.time()))
 	else:
 		noPost = False
 		if session['pc'] == -1:
@@ -75,7 +73,7 @@ def handleRequest(request, memSize, session):
 				machine.nextLoop(True)
 			session['pc'] = machine.cycles
 			session['scroll'] = request.form['scroll']
-		return render_template('BFD.html', navBar=navBar, t=str(time.time()),code=machine.codeToHTML(), console=machine.consoleToHTML(), memory=machine.memoryToHTML(), scroll=session['scroll'])
+		return render_template('BFD.html', t=str(time.time()),code=machine.codeToHTML(), console=machine.consoleToHTML(), memory=machine.memoryToHTML(), scroll=session['scroll'])
 
 # The Main Machine Object Class
 class Machine():

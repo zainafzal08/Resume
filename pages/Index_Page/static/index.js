@@ -74,7 +74,7 @@ function getBackgroundImage(){
 	var width = document.documentElement.clientWidth;
 	var height = document.documentElement.clientHeight;
 	// hardcoding this for now to remove issues with window.href
-	var url = "/index/"+"imgRequest?w="+width+"&h="+height;
+	var url = "../api/"+"imgRequest?w="+width+"&h="+height;
 	try{
 		httpGetAsync(url,setBackgroundImg);
 	}catch(err){
