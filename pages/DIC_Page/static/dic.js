@@ -73,5 +73,3 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
     xmlHttp.send(null);
 }
-
-alert("Old vanilla JavaScript is so much better than Python :)");
