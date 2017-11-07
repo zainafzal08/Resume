@@ -407,16 +407,33 @@ function getBackgroundImage(){
 	var height = document.documentElement.clientHeight;
 	var base = window.location.href.split("?")[0];
 	var url = base+"imgRequest?w="+width+"&h="+height;
+	if(window.location.href.split("?").length == 2 && window.location.href.split("?")[1] == "plain"){
+		plainImg();
+		return
+	}
+
 	try{
 		httpGetAsync(url,setBackgroundImg);
 	}catch(err){
-		console.log("Sorry! There was a error getting a background image from the server");
-		console.log("Using default backup image...")
-		var imgElem = document.getElementById("background-div");
-		var imgCreditElem = document.getElementById("img-credit");
-		imgCreditElem.href = "https://wallpapersafari.com/free-mountain-wallpaper-backgrounds/";
-		imgElem.style.backgroundImage = "url(http://cdn.wallpapersafari.com/17/34/42nLhc.jpg)";
+		fallBackImg();
 	}
+}
+
+function fallBackImg(){
+	console.log("Sorry! There was a error getting a background image from the server");
+	console.log("Using default backup image...")
+	var imgElem = document.getElementById("background-div");
+	var imgCreditElem = document.getElementById("img-credit");
+	imgCreditElem.href = "https://wallpapersafari.com/free-mountain-wallpaper-backgrounds/";
+	imgElem.style.backgroundImage = "url(http://cdn.wallpapersafari.com/17/34/42nLhc.jpg)";
+}
+
+function plainImg(){
+	console.log("Getting a plain image because getting a random one is too WILD for you apparently");
+	var imgElem = document.getElementById("background-div");
+	var imgCreditElem = document.getElementById("img-credit");
+	imgCreditElem.href = "https://www.instagram.com/juliamstarr/";
+	imgElem.style.backgroundImage = "url(/static/test.jpg)";
 }
 
 

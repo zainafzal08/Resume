@@ -1,5 +1,51 @@
 var toggled = false;
 var blocked = false;
+let focusToggled = false;
+let focusAnimating = false;
+
+document.onkeypress = handleKeyDown;
+
+function handleKeyDown(e=window.event){
+	const charCode = e.keyCode || e.which;
+	const bot = document.getElementById("top");
+	const top = document.getElementById("bottom");
+
+	// this is 'F'
+	if(charCode == 102 && top !== document.activeElement && bot !== document.activeElement){
+		focusScreen();
+	}
+}
+
+
+function focusScreen(){
+	if(focusAnimating)
+		return
+	if(focusToggled){
+		focusToggled = false;
+		focusAnimating = true;
+		var navbar = document.getElementById('nav-bar');
+		var link = document.getElementById('left');
+		var info = document.getElementById('right');
+		var background = document.getElementById('background-div');
+		Velocity(navbar, { opacity: 1}, { duration: 1000 });
+		Velocity(link, { opacity: 1}, { duration: 1000 });
+		Velocity(info, { opacity: 1}, { duration: 1000 });
+		Velocity(background, { blur: 0}, { duration: 1000 });
+		setTimeout(function(){ focusAnimating = false }, 1200);
+	}else{
+		focusToggled = true;
+		focusAnimating = true;
+		var navbar = document.getElementById('nav-bar');
+		var link = document.getElementById('left');
+		var info = document.getElementById('right');
+		var background = document.getElementById('background-div');
+		Velocity(navbar, { opacity: 0}, { duration: 1000 });
+		Velocity(link, { opacity: 0}, { duration: 1000 });
+		Velocity(info, { opacity: 0}, { duration: 1000 });
+		Velocity(background, { blur: 3}, { duration: 1000 });
+		setTimeout(function(){ focusAnimating = false }, 1200);
+	}
+}
 
 function toggle(){
 	if(blocked)
@@ -7,8 +53,8 @@ function toggle(){
 	toggled = !toggled;
 	var element = document.getElementById("url_link");
 	var url = "";
-	var top = document.getElementById("top").innerHTML;
-	var bot = document.getElementById("bottom").innerHTML;
+	var top = document.getElementById("top").value;
+	var bot = document.getElementById("bottom").value;
 	base = window.location.href;
 	base = base.split("?")[0];
 	url = base+"?top="+top+"&bot="+bot;
@@ -37,18 +83,34 @@ function getBackgroundImage(){
 	var height = document.documentElement.clientHeight;
 	var base = window.location.href.split("?")[0];
 	var url = base+"imgRequest?w="+width+"&h="+height;
+	if(window.location.href.split("?").length == 2 && window.location.href.split("?")[1] == "plain"){
+		plainImg();
+		return
+	}
+
 	try{
 		httpGetAsync(url,setBackgroundImg);
 	}catch(err){
-		console.log("Sorry! There was a error getting a background image from the server");
-		console.log("Using default backup image...")
-		var imgElem = document.getElementById("background-div");
-		var imgCreditElem = document.getElementById("img-credit");
-		imgCreditElem.href = "https://wallpapersafari.com/free-mountain-wallpaper-backgrounds/";
-		imgElem.style.backgroundImage = "url(http://cdn.wallpapersafari.com/17/34/42nLhc.jpg)";
+		fallBackImg();
 	}
 }
 
+function fallBackImg(){
+	console.log("Sorry! There was a error getting a background image from the server");
+	console.log("Using default backup image...")
+	var imgElem = document.getElementById("background-div");
+	var imgCreditElem = document.getElementById("img-credit");
+	imgCreditElem.href = "https://wallpapersafari.com/free-mountain-wallpaper-backgrounds/";
+	imgElem.style.backgroundImage = "url(http://cdn.wallpapersafari.com/17/34/42nLhc.jpg)";
+}
+
+function plainImg(){
+	console.log("Getting a plain image because getting a random one is too WILD for you apparently");
+	var imgElem = document.getElementById("background-div");
+	var imgCreditElem = document.getElementById("img-credit");
+	imgCreditElem.href = "https://www.instagram.com/juliamstarr/";
+	imgElem.style.backgroundImage = "url(/static/test.jpg)";
+}
 
 function setBackgroundImg(response){
 	var imgElem = document.getElementById("background-div");
@@ -58,7 +120,7 @@ function setBackgroundImg(response){
 	imgElem.style.backgroundImage = "url("+img.src+")";
 }
 
-/* 
+/*
  * This function was taken from stackoverflow
  * via user Joan
  * https://stackoverflow.com/questions/247483/http-get-request-in-javascript
@@ -66,10 +128,10 @@ function setBackgroundImg(response){
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
+    xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
     xmlHttp.send(null);
 }
