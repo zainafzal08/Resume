@@ -20,7 +20,7 @@
 		</script>
 	</head>
 	<body onload="initaliseView({{prjLen}})" onresize="calibrateView({{prjLen}})" onscroll="updateNav()">
-		<div id="background-div" class="background" style="background-image: url();"></div>
+		<div id="background-div" class="loading"></div>
 		<div class="background overlay" style="background-image: url('{{url_for('indexPage.static',filename='overlay.png')}}?v={{t}}')"></div>
 		<a id="img-credit" class="img-link" href="">Image Credit</a>
 		{{navBar|safe}}

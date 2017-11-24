@@ -68,7 +68,7 @@ def initalise(name,link):
 	links=[("Live","http://subleq.herokuapp.com/"),("Riyasat","http://riyasatsaber.com/"),("Github","https://github.com/rsaber/subleq")]
 	globalNav.addProject("Subleq","S",desc,links)
 
-	desc="A simple, beautiful, countdown timer whose background changes every day or so! Works via the Reddit Image script"
+	desc="A simple, beautiful, countdown timer whose background changes every day or so! Works via the NationalGeo Image script"
 	links=[("Live","/timer"),("Github","https://github.com/zainafzal08/Resume/tree/master/pages/Timer_Page")]
 	globalNav.addProject("Timer","T",desc,links)
 
@@ -76,7 +76,7 @@ def initalise(name,link):
 	links=[("Live","/flashcard"),("Github","https://github.com/zainafzal08/Resume/tree/master/pages/Flashcard_Page")]
 	globalNav.addProject("Flashcard","F",desc,links)
 
-	desc="A sharable stunning image from the Reddit Image script that you can overlay text on. Affectionately dubbed 'Deep Image Creator'"
+	desc="A sharable stunning image from the NationalGeo Image script that you can overlay text on. Affectionately dubbed 'Deep Image Creator'"
 	links=[("Live","/dic"),("Github","https://github.com/zainafzal08/Resume/tree/master/pages/DIC_Page")]
 	globalNav.addProject("Poster Maker","P",desc,links)
 
@@ -104,9 +104,18 @@ def initalise(name,link):
 	links=[("Github","https://github.com/zainafzal08/CoolStuff")]
 	globalNav.addProject("Cool Stuff","C",desc,links)
 
-	desc="A small script to search and find a beautiful image from reddit given constraints. Used on this page, Timer and Poster Maker"
+	desc="A small script to search and find a beautiful image from reddit given constraints."
 	links=[("Github","https://github.com/zainafzal08/Resume/blob/master/pages/Common/redditImageScraper.py")]
 	globalNav.addProject("Reddit Image","R",desc,links)
+
+	desc="A small script to search and find images from National Geographics Image Archives given constraints."
+	links=[("Github","https://github.com/zainafzal08/Resume/blob/master/pages/Common/nationalGeoScraper.py")]
+	globalNav.addProject("NatGeo Image","N",desc,links)
+
+	desc="A small script to search and find royalty free images from pexels landscape images. Used on this page, Timer and Poster Maker"
+	links=[("Github","https://github.com/zainafzal08/Resume/blob/master/pages/Common/pexelScraper.py")]
+	globalNav.addProject("Pexel Image","P",desc,links)
+
 
 def register(temp,name,link):
 	global globalNav
