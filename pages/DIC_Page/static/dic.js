@@ -91,6 +91,7 @@ function getBackgroundImage(){
 	try{
 		httpGetAsync(url,setBackgroundImg);
 	}catch(err){
+		document.getElementById("background-div").className = "background";
 		fallBackImg();
 	}
 }
@@ -118,6 +119,7 @@ function setBackgroundImg(response){
 	var img = JSON.parse(response);
 	imgCreditElem.href = img.credit;
 	imgElem.style.backgroundImage = "url("+img.src+")";
+	imgElem.className = "background";
 }
 
 /*

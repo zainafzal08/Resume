@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template
 import time
-from ..Common import redditImageScraper
+from ..Common import pexelScraper
 from ..Common import nav
 import json
 
@@ -25,7 +25,7 @@ def imgRequest():
 		h = int(request.args['h'])
 	except:
 		abort(404)
-	img = redditImageScraper.simpleSearch(w,h)
+	img = pexelScraper.simpleSearch(w,h)
 	if img != None:
 		return json.dumps(img)
 	else:
