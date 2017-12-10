@@ -39,9 +39,8 @@ def getLinkDump(page, catagory):
 			continue
 	return links
 
-def extractImgs(link):
+def extractImg(link):
 	raw = getPage(link)
-
 
 	try:
 		dim = re.search("\d+ x \d+ pixels",raw).group(0)
@@ -49,7 +48,6 @@ def extractImgs(link):
 	except:
 		return None
 
-	
 	w = int(dim.split(" ")[0])
 	h = int(dim.split(" ")[2])
 	img = {
@@ -68,13 +66,10 @@ def getNewImage(settings):
 	links = links[0:settings["maxSearch"]]
 	matchImg = None
 	for link in links:
-		imgs = extractImgs(link)
-		for img in imgs:
-			if dimentionsCorrect(img["w"],img["h"],settings):
-				matchImg = img
-		if matchImg != None:
+		img = extractImg(link)
+		if dimentionsCorrect(img["w"],img["h"],settings):
+			matchImg = img
 			break
-
 	return matchImg
 
 def simpleSearch(w,h):
