@@ -39,14 +39,17 @@ def getLinkDump(page, catagory):
 			continue
 	return links
 
-def extractImg(link):
+def extractImgs(link):
 	raw = getPage(link)
+
+
 	try:
 		dim = re.search("\d+ x \d+ pixels",raw).group(0)
 		l = re.search("<source srcset=\"([^\"]*)\"", raw).group(1).split("?")[0]
 	except:
 		return None
 
+	
 	w = int(dim.split(" ")[0])
 	h = int(dim.split(" ")[2])
 	img = {
@@ -58,17 +61,20 @@ def extractImg(link):
 	return img
 
 def getNewImage(settings):
-	page = random.randint(1,10)
+	page = random.randint(1,50)
 	links = getLinkDump(page,"landscapes")
 	links += getLinkDump(page,"christmas") # tis the season to be jolly
 	random.shuffle(links)
 	links = links[0:settings["maxSearch"]]
 	matchImg = None
 	for link in links:
-		img = extractImg(link)
-		if dimentionsCorrect(img["w"],img["h"],settings):
-			matchImg = img
-	
+		imgs = extractImgs(link)
+		for img in imgs:
+			if dimentionsCorrect(img["w"],img["h"],settings):
+				matchImg = img
+		if matchImg != None:
+			break
+
 	return matchImg
 
 def simpleSearch(w,h):
