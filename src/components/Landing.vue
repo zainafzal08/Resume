@@ -1,5 +1,12 @@
 <template>
   <div class="poster-container">
+    <!-- With < max elements they need to hover near middle -->
+
+    <div id="nav-dots" class="nav-dots">
+      <div class="dot"> X </div>
+      <div class="dot"> X </div>
+    </div>
+
     <div id ="card-1" class="poster-card poster-1 shadow">
       <div class="innards" id="card-1-innards">
         <div class="card-header">
@@ -12,7 +19,6 @@
             <div class="logos">
 
             </div>
-            <h3> He's alright i guess </h3>
           </div>
         </div>
         <div class="card-footer">
@@ -140,6 +146,24 @@ export default {
     width: 100%;
     height: 100%;
   }
+
+  /* nav bar */
+  .poster-container .nav-dots {
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+    height: 60vh;
+    position: absolute;
+    left: 0vw;
+    top: 30vh;
+    align-items: center;
+  }
+  .poster-container .nav-dots .dot{
+    width: 100%;
+    height: 2em;
+    text-align: center;
+  }
+
   /* poster background info */
   .poster-1 {
     background: #444444;

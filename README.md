@@ -2,6 +2,14 @@
 
 > A little site to show off my code!
 
+
+## todo
+
+1. fix dot navbar to have less then max element hover near middle
+2. add icons and set up icons on home page
+3. add some PZZAZZ to the home page, perhaps a scrolling set of qualities.
+  - a rotating circle yo is amazing.
+
 ## idea
 
 z index seperates poster images, as you scroll it flips through them, each one with a project on it.
