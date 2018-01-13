@@ -5,10 +5,8 @@
 
 ## todo
 
-1. do navbar
-2. do homepage
-3. fix images scalling when the height of the containing div is changed.
-4. add some PZZAZZ to the home page, perhaps a scrolling set of qualities.
+1. do homepage
+2. add some PZZAZZ to the home page, perhaps a scrolling set of qualities.
   - a rotating circle yo is amazing.
 
 ## idea

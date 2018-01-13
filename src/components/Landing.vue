@@ -4,7 +4,7 @@
 
     <div id="nav-dots" class="nav-dots">
       <div class="dots">
-        <div v-for="c in numCards">
+        <div v-for="c in numCards" class="dot">
           <a class="mdi mdi-checkbox-blank-circle-outline" v-if="card != c" v-on:click="updateCard(c)"></a>
           <a class="mdi mdi-checkbox-blank-circle" v-if="card == c"></a>
         </div>
@@ -52,10 +52,10 @@ export default {
   },
   methods: {
     handleScroll (e) {
-      if (e.deltaY > this.scrollThreshold && this.card < this.numCards) {
+      if (e.deltaY > this.scrollThreshold && this.card < this.numCards ) {
         this.nextCard(800,false)
       }
-      if (e.deltaY < -1 * this.scrollThreshold  && this.card > 1) {
+      if (e.deltaY < -1 * this.scrollThreshold  && this.card > 1 ) {
         this.prevCard(800,false)
       }
     },
@@ -78,7 +78,7 @@ export default {
         this.animating = true
         setTimeout(function() { this.animating = false }.bind(this), d+100)
       }
-      window.Velocity(document.getElementById('card-' + this.card), {height: '0vh'}, d)
+      window.Velocity(document.getElementById('card-' + this.card), {'margin-top': '-100vh'}, d)
       window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '0'}, d)
       this.card++
     },
@@ -89,9 +89,9 @@ export default {
         this.animating = true
         setTimeout(function() { this.animating = false }.bind(this), d+100)
       }
-      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '1'}, d)
+      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '0'}, d)
       this.card--
-      window.Velocity(document.getElementById('card-' + this.card), {height: '100vh'}, d)
+      window.Velocity(document.getElementById('card-' + this.card), {'margin-top': '0vh'}, d)
       window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '1'}, d)
     }
   },
@@ -159,9 +159,6 @@ export default {
     align-items: center;
   }
 
-  .poster-container .nav-dots a{
-    margin-bottom: 1rem;
-  }
 
   .poster-container .nav-dots .dots{
     width: 100%;
@@ -175,6 +172,21 @@ export default {
   .poster-container .nav-dots .mdi-checkbox-blank-circle-outline:hover {
     opacity: 0.5;
   }
+
+  .poster-container .nav-dots .dots .dot {
+    margin-bottom: 0.3rem;
+  }
+
+  @media screen and (max-width: 500px){
+    .poster-container .nav-dots .dots{
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+  }
   /* poster background info */
   .poster-1 {
     background: #272B30;
@@ -183,6 +195,7 @@ export default {
     background-image: url('./images/poster_1.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
   }
   .poster-3 {
     background: #444444;
@@ -192,9 +205,5 @@ export default {
   .shadow {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  }
-
-  .shadow:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
 </style>
