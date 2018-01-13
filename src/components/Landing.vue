@@ -3,8 +3,12 @@
     <!-- With < max elements they need to hover near middle -->
 
     <div id="nav-dots" class="nav-dots">
-      <div class="dot"> X </div>
-      <div class="dot"> X </div>
+      <div class="dots">
+        <div v-for="c in numCards">
+          <a class="mdi mdi-checkbox-blank-circle-outline" v-if="card != c" v-on:click="updateCard(c)"></a>
+          <a class="mdi mdi-checkbox-blank-circle" v-if="card == c"></a>
+        </div>
+      </div>
     </div>
 
     <div id ="card-1" class="poster-card poster-1 shadow">
@@ -13,13 +17,7 @@
 
         </div>
         <div class="card-content">
-          <div class="center-text">
-            <h1> Zain Afzal </h1>
-            <hr>
-            <div class="logos">
 
-            </div>
-          </div>
         </div>
         <div class="card-footer">
 
@@ -54,34 +52,47 @@ export default {
   },
   methods: {
     handleScroll (e) {
-      if (e.deltaY > this.scrollThreshold && !this.animating && this.card < this.numCards) {
-        this.animating = true
-        setTimeout(function() {
-          this.animating = false
-        }.bind(this), 1000)
-        this.nextCard()
+      if (e.deltaY > this.scrollThreshold && this.card < this.numCards) {
+        this.nextCard(800,false)
       }
-      if (e.deltaY < -1 * this.scrollThreshold && !this.animating && this.card > 1) {
-        this.animating = true
-        setTimeout(function() {
-          this.animating = false
-        }.bind(this), 1000)
-        this.prevCard()
+      if (e.deltaY < -1 * this.scrollThreshold  && this.card > 1) {
+        this.prevCard(800,false)
       }
     },
-    nextCard () {
-      window.Velocity(document.getElementById('card-' + this.card), {height: '0vh'}, 800)
-      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '0'}, 800)
+    updateCard(c) {
+      let adjust = (this.card > c) ? 1 : -1
+      let target = this.card
+      while(c != target) {
+        if (adjust == 1) {
+          this.prevCard(500,true)
+        } else {
+          this.nextCard(500,true)
+        }
+        c += adjust
+      }
+    },
+    nextCard (d,ignoreState) {
+      if (this.animating && !ignoreState) {
+        return
+      } else if (!ignoreState) {
+        this.animating = true
+        setTimeout(function() { this.animating = false }.bind(this), d+100)
+      }
+      window.Velocity(document.getElementById('card-' + this.card), {height: '0vh'}, d)
+      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '0'}, d)
       this.card++
     },
-    prevCard () {
-      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '1'}, 800)
+    prevCard (d,ignoreState) {
+      if (this.animating) {
+        return
+      } else if (!ignoreState) {
+        this.animating = true
+        setTimeout(function() { this.animating = false }.bind(this), d+100)
+      }
+      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '1'}, d)
       this.card--
-      window.Velocity(document.getElementById('card-' + this.card), {height: '100vh'}, 800)
-      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '1'}, 800)
-    },
-    jumpCard (c) {
-
+      window.Velocity(document.getElementById('card-' + this.card), {height: '100vh'}, d)
+      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '1'}, d)
     }
   },
   created () {
@@ -121,7 +132,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family:  'Ubuntu', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: white;
   }
   .poster-card .card-content h1{
@@ -133,15 +144,6 @@ export default {
     display: flex;
   }
 
-  .poster-card .logos{
-    text-align: center;
-    width: 50%;
-  }
-
-  .poster-card .center-text{
-    text-align: center;
-    width: 50%;
-  }
   .poster-card .innards{
     width: 100%;
     height: 100%;
@@ -150,23 +152,32 @@ export default {
   /* nav bar */
   .poster-container .nav-dots {
     display: flex;
-    flex-direction: column;
     width: 10vw;
-    height: 60vh;
+    height: 100vh;
     position: absolute;
-    left: 0vw;
-    top: 30vh;
+    left: 2rem;
     align-items: center;
   }
-  .poster-container .nav-dots .dot{
-    width: 100%;
-    height: 2em;
-    text-align: center;
+
+  .poster-container .nav-dots a{
+    margin-bottom: 1rem;
   }
 
+  .poster-container .nav-dots .dots{
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .poster-container .nav-dots .mdi-checkbox-blank-circle-outline:hover {
+    opacity: 0.5;
+  }
   /* poster background info */
   .poster-1 {
-    background: #444444;
+    background: #272B30;
   }
   .poster-2 {
     background-image: url('./images/poster_1.jpeg');
@@ -174,7 +185,7 @@ export default {
     background-size: cover;
   }
   .poster-3 {
-    background: #EBEBEB;
+    background: #444444;
   }
 
   /* material design shadows */

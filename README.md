@@ -5,9 +5,10 @@
 
 ## todo
 
-1. fix dot navbar to have less then max element hover near middle
-2. add icons and set up icons on home page
-3. add some PZZAZZ to the home page, perhaps a scrolling set of qualities.
+1. do navbar
+2. do homepage
+3. fix images scalling when the height of the containing div is changed.
+4. add some PZZAZZ to the home page, perhaps a scrolling set of qualities.
   - a rotating circle yo is amazing.
 
 ## idea
