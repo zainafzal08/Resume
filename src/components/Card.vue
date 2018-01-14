@@ -1,7 +1,14 @@
 <template>
-  <div :id="name" class="poster-card shadow" :style="{'background-color': bgc}">
-    <div class="innards" :id="name+suffix">
-      <slot></slot>
+  <div>
+    <div v-if="bgt == 'color'" :id="name" class="poster-card shadow" :style="{'background-color': bg}">
+      <div class="innards" :id="name+suffix">
+        <slot></slot>
+      </div>
+    </div>
+    <div v-if="bgt == 'image'" :id="name" class="poster-card shadow back-img" :style="{'background-image': 'url('+bg+')'}">
+      <div class="innards" :id="name+suffix">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -9,7 +16,7 @@
 <script>
 export default {
   name: 'Card',
-  props: ["name","bgc","suffix"],
+  props: ["name","bg","bgt","suffix"],
   data () {
     return {}
   }
@@ -33,4 +40,12 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
+  /* poster background info */
+  .back-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
 </style>

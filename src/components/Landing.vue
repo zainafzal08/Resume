@@ -4,15 +4,15 @@
 
     <DotNav :dotNum="cards.length" :trigger="updateCard" :selected="card"></DotNav>
 
-    <Card name="card-1" suffix="-innards" bgc="#272B30">
+    <Card name="card-1" suffix="-innards" bg="#272B30" bgt="color">
       <TitleBrand title="Zain Afzal"></TitleBrand>
     </Card>
 
-    <Card name="card-2" suffix="-innards" bgc="#444444">
-
+    <Card name="card-2" suffix="-innards" :bg="require('./images/poster_1.jpeg')" bgt="image">
+      <ProjectOutline title="Image Scrapers"></ProjectOutline>
     </Card>
 
-    <Card name="card-3" suffix="-innards" bgc="#777777">
+    <Card name="card-3" suffix="-innards" bg="#777777" bgt="color">
 
     </Card>
   </div>
@@ -23,6 +23,7 @@ import './js/velocity.js'
 import DotNav from './DotNav.vue'
 import TitleBrand from './TitleBrand.vue'
 import Card from './Card.vue'
+import ProjectOutline from './ProjectOutline.vue'
 
 export default {
   name: 'Landing',
@@ -41,7 +42,8 @@ export default {
   components: {
     DotNav,
     TitleBrand,
-    Card
+    Card,
+    ProjectOutline
   },
   methods: {
     handleScroll (e) {
@@ -106,13 +108,5 @@ export default {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-  }
-
-  /* poster background info */
-  .BACKUP {
-    background-image: url('./images/poster_1.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
   }
 </style>
