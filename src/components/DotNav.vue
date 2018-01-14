@@ -1,0 +1,69 @@
+<template>
+  <div class="nav-dots">
+    <div class="dots">
+      <div v-for="i in dotNum" class="dot">
+        <a class="mdi mdi-checkbox-blank-circle-outline" v-if="selected != i" v-on:click="registerClick(i)"></a>
+        <a class="mdi mdi-checkbox-blank-circle" v-if="selected == i"></a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'DotNav',
+  props: ['dotNum','trigger','selected'],
+  data () {
+    return {}
+  },
+  updated: function () {
+    this.$nextTick(function () {
+      console.log(this.selected)
+    }.bind(this))
+  },
+  methods: {
+    registerClick: function(i) {
+      this.trigger(i)
+    }
+  }
+}
+</script>
+
+<style>
+  .nav-dots {
+    display: flex;
+    width: 10vw;
+    height: 100vh;
+    position: absolute;
+    left: 2rem;
+    align-items: center;
+  }
+
+  .nav-dots .dots{
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-dots .mdi-checkbox-blank-circle-outline:hover {
+    opacity: 0.5;
+  }
+
+  .nav-dots .dots .dot {
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 500px){
+    .nav-dots .dots{
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+</style>

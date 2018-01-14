@@ -2,23 +2,20 @@
 
 > A little site to show off my code!
 
-
 ## todo
 
-1. do homepage
-2. add some PZZAZZ to the home page, perhaps a scrolling set of qualities.
-  - a rotating circle yo is amazing.
+1. transfer landing to be more component based
+2. make each component work in mobile.
 
 ## show off points
 
-remember to show off about summer internship 
+remember to show off about summer internship
 
 ## idea
 
 z index seperates poster images, as you scroll it flips through them, each one with a project on it.
 (have a small dot based system for jumping between)
 keep to pure github atm, the live sites need work yikes.
-keep same text element at highest z index, animate it clearing and retyping on scroll. (pretty quickily)
 
 ## pages
 
@@ -27,7 +24,7 @@ page on sec seoc stuff
 rest copy
 maybe chuck in adventure buddy?
 nodeboard?
-check out github i dunno lol. Maybe chuck in svg stuff with a overall web page
+check out github i dunno lol. Maybe chuck in svg stuff with a overall web dev page
 
 ## Build Setup
 
