@@ -9,6 +9,10 @@
 2. add some PZZAZZ to the home page, perhaps a scrolling set of qualities.
   - a rotating circle yo is amazing.
 
+## show off points
+
+remember to show off about summer internship 
+
 ## idea
 
 z index seperates poster images, as you scroll it flips through them, each one with a project on it.
