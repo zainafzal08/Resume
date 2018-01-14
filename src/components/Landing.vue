@@ -2,13 +2,17 @@
   <div class="poster-container">
     <!-- With < max elements they need to hover near middle -->
 
-    <DotNav :dotNum="numCards" :trigger="updateCard" :selected="card"></DotNav>
+    <DotNav :dotNum="cards.length" :trigger="updateCard" :selected="card"></DotNav>
 
-    <Card name="card-1" bgc="#272B30">
+    <Card name="card-1" suffix="-innards" bgc="#272B30">
       <TitleBrand title="Zain Afzal"></TitleBrand>
     </Card>
 
-    <Card name="card-2" bgc="#444444">
+    <Card name="card-2" suffix="-innards" bgc="#444444">
+
+    </Card>
+
+    <Card name="card-3" suffix="-innards" bgc="#777777">
 
     </Card>
   </div>
@@ -25,8 +29,12 @@ export default {
   data () {
     return {
       animating: false,
+      cards: [
+        ["card-1","card-1-innards"],
+        ["card-2","card-2-innards"],
+        ["card-3","card-3-innards"]
+      ],
       card: 1,
-      numCards: 2,
       scrollThreshold: 15
     }
   },
@@ -37,7 +45,7 @@ export default {
   },
   methods: {
     handleScroll (e) {
-      if (e.deltaY > this.scrollThreshold && this.card < this.numCards ) {
+      if (e.deltaY > this.scrollThreshold && this.card <= this.cards.length ) {
         this.nextCard(800,false)
       }
       if (e.deltaY < -1 * this.scrollThreshold  && this.card > 1 ) {
@@ -63,21 +71,21 @@ export default {
         this.animating = true
         setTimeout(function() { this.animating = false }.bind(this), d+100)
       }
-      window.Velocity(document.getElementById('card-' + this.card), {'margin-top': '-100vh'}, d)
-      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '0'}, d)
+      window.Velocity(document.getElementById(this.cards[this.card-1][0]), {'margin-top': '-100vh'}, d)
       this.card++
+      window.Velocity(document.getElementById(this.cards[this.card-1][1]), {opacity: '1'}, d)
     },
     prevCard (d,ignoreState) {
-      if (this.animating) {
+      if (this.animating && !ignoreState) {
         return
       } else if (!ignoreState) {
         this.animating = true
         setTimeout(function() { this.animating = false }.bind(this), d+100)
       }
-      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '0'}, d)
+      window.Velocity(document.getElementById(this.cards[this.card-1][1]), {opacity: '0'}, d)
       this.card--
-      window.Velocity(document.getElementById('card-' + this.card), {'margin-top': '0vh'}, d)
-      window.Velocity(document.getElementById('card-' + this.card + '-innards'), {opacity: '1'}, d)
+      window.Velocity(document.getElementById(this.cards[this.card-1][0]), {'margin-top': '0vh'}, d)
+      window.Velocity(document.getElementById(this.cards[this.card-1][1]), {opacity: '1'}, d)
     }
   },
   created () {

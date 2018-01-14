@@ -1,6 +1,6 @@
 <template>
   <div :id="name" class="poster-card shadow" :style="{'background-color': bgc}">
-    <div class="innards" :id="name+'-innards'">
+    <div class="innards" :id="name+suffix">
       <slot></slot>
     </div>
   </div>
@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'Card',
-  props: ["name","bgc"],
+  props: ["name","bgc","suffix"],
   data () {
     return {}
   }

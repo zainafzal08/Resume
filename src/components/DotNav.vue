@@ -16,11 +16,6 @@ export default {
   data () {
     return {}
   },
-  updated: function () {
-    this.$nextTick(function () {
-      console.log(this.selected)
-    }.bind(this))
-  },
   methods: {
     registerClick: function(i) {
       this.trigger(i)

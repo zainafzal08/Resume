@@ -10,6 +10,7 @@
 ## show off points
 
 remember to show off about summer internship
+link twitter (also set up twitter lmao)
 
 ## idea
 
