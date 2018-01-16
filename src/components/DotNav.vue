@@ -32,6 +32,7 @@ export default {
     position: absolute;
     left: 2rem;
     align-items: center;
+    z-index: 5;
   }
 
   .nav-dots .dots{
