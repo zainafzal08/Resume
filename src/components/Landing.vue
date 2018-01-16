@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import './js/velocity.js'
 import DotNav from './DotNav.vue'
 import TitleBrand from './TitleBrand.vue'
 import Card from './Card.vue'
