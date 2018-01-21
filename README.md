@@ -4,20 +4,14 @@
 
 ## todo
 
-1. Make project work in mobile
-2. center logo with text on project
-3. make footer card
+0. Update Project To Support Multi Link
+  - actually set up interface to get links/icons
+1. Make footer card
+2. Add in all the content
+3. Make jsfiddles for some scripts
+4. remember to show off about summer internship
+5. link twitter (also set up twitter lmao)
 
-## show off points
-
-remember to show off about summer internship
-link twitter (also set up twitter lmao)
-
-## idea
-
-z index seperates poster images, as you scroll it flips through them, each one with a project on it.
-(have a small dot based system for jumping between)
-keep to pure github atm, the live sites need work yikes.
 
 ## pages
 
@@ -27,6 +21,7 @@ rest copy
 maybe chuck in adventure buddy?
 nodeboard?
 check out github i dunno lol. Maybe chuck in svg stuff with a overall web dev page
+check documents
 
 ## Build Setup
 
