@@ -81,10 +81,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  @import url('https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro|Ubuntu');
 
   .brand {
     width: 40vw;
     text-align: center;
+    font-family: 'Ubuntu',sans-serif;
   }
 
   .brand hr{
@@ -97,6 +99,7 @@ export default {
 
   .brand h1{
     font-size: 3rem;
+    margin-top: 0;
   }
   .brand h3{
     font-size: 1.5rem;
@@ -118,5 +121,14 @@ export default {
 
   .brand .tag-lines .tag {
     min-width: 100%;
+  }
+
+  @media screen and (max-width: 600px){
+    .brand {
+      width: 90vw;
+      text-align: center;
+      font-family: 'Ubuntu',sans-serif;
+    }
+
   }
 </style>

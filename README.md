@@ -4,8 +4,9 @@
 
 ## todo
 
-1. transfer landing to be more component based
-2. make each component work in mobile.
+1. Make project work in mobile
+2. center logo with text on project
+3. make footer card
 
 ## show off points
 

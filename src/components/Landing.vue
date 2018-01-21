@@ -2,14 +2,14 @@
   <div class="poster-container">
     <!-- With < max elements they need to hover near middle -->
 
-    <DotNav :dotNum="cards.length" :trigger="updateCard" :selected="card"></DotNav>
+    <DotNav :bg="theme" :dotNum="cards.length" :trigger="updateCard" :selected="card" :focused="card == 1"></DotNav>
 
-    <Card name="card-1" suffix="-innards" bg="#272B30" bgt="color">
+    <Card name="card-1" suffix="-innards" :bg="theme" bgt="color">
       <TitleBrand title="Zain Afzal"></TitleBrand>
     </Card>
 
     <Card name="card-2" suffix="-innards" :bg="require('./images/poster_1.jpeg')" bgt="image">
-      <ProjectOutline title="Image Scrapers"></ProjectOutline>
+      <ProjectOutline title="Image Scrapers" :bg="theme" theme="#29ABE0" :points="points"></ProjectOutline>
     </Card>
 
     <Card name="card-3" suffix="-innards" bg="#777777" bgt="color">
@@ -35,7 +35,25 @@ export default {
         ["card-3","card-3-innards"]
       ],
       card: 1,
-      scrollThreshold: 15
+      scrollThreshold: 15,
+      theme: "#272B30",
+      points: [
+        {
+          title: "Pixel Scraper",
+          link: "www.google.com",
+          description: "A small script to search and find royalty free images from pexels landscape images."
+        },
+        {
+          title: "NatGeo Scraper",
+          link: "www.google.com",
+          description: "A small script to search and find images from National Geographics Image Archives given constraints."
+        },
+        {
+          title: "Reddit Scraper",
+          link: "www.google.com",
+          description: "A small script to search and find a beautiful image from reddit given constraints."
+        }
+      ]
     }
   },
   components: {
@@ -46,7 +64,7 @@ export default {
   },
   methods: {
     handleScroll (e) {
-      if (e.deltaY > this.scrollThreshold && this.card <= this.cards.length ) {
+      if (e.deltaY > this.scrollThreshold && this.card < this.cards.length ) {
         this.nextCard(800,false)
       }
       if (e.deltaY < -1 * this.scrollThreshold  && this.card > 1 ) {
@@ -73,6 +91,7 @@ export default {
         setTimeout(function() { this.animating = false }.bind(this), d+100)
       }
       window.Velocity(document.getElementById(this.cards[this.card-1][0]), {'margin-top': '-100vh'}, d)
+      window.Velocity(document.getElementById(this.cards[this.card-1][1]), {opacity: '0'}, d)
       this.card++
       window.Velocity(document.getElementById(this.cards[this.card-1][1]), {opacity: '1'}, d)
     },
@@ -100,8 +119,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  @import url('https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro|Ubuntu');
-
   /* Container  */
   .poster-container {
     width: 100vw;

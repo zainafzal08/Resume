@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-dots">
+  <div class="nav-dots" :class="{focus:focused}">
     <div class="dots">
       <div v-for="i in dotNum" class="dot">
         <a class="mdi mdi-checkbox-blank-circle-outline" v-if="selected != i" v-on:click="registerClick(i)"></a>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'DotNav',
-  props: ['dotNum','trigger','selected'],
+  props: ['dotNum','trigger','selected','focused'],
   data () {
     return {}
   },
@@ -30,7 +30,6 @@ export default {
     width: 10vw;
     height: 100vh;
     position: absolute;
-    left: 2rem;
     align-items: center;
     z-index: 5;
   }
@@ -39,9 +38,14 @@ export default {
     width: 100%;
     text-align: center;
     font-size: 1.8rem;
+    margin-left: 2rem;
     color: white;
     display: flex;
     flex-direction: column;
+  }
+
+  .nav-dots.focus {
+    box-shadow: none;
   }
 
   .nav-dots .mdi-checkbox-blank-circle-outline:hover {
@@ -51,15 +55,9 @@ export default {
   .nav-dots .dots .dot {
     margin-bottom: 1rem;
   }
-
-  @media screen and (max-width: 500px){
-    .nav-dots .dots{
-      width: 100%;
-      text-align: center;
-      font-size: 1.5rem;
-      color: white;
-      display: flex;
-      flex-direction: column;
+  @media screen and (max-width: 600px){
+    .nav-dots {
+      display: none;
     }
   }
 </style>
