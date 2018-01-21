@@ -1,7 +1,5 @@
 <template>
   <div class="poster-container">
-    <!-- With < max elements they need to hover near middle -->
-
     <DotNav :bg="theme" :dotNum="cards.length" :trigger="updateCard" :selected="card" :focused="card == 1"></DotNav>
 
     <Card name="card-1" suffix="-innards" :bg="theme" bgt="color">
@@ -9,7 +7,7 @@
     </Card>
 
     <Card name="card-2" suffix="-innards" :bg="require('./images/poster_1.jpeg')" bgt="image">
-      <ProjectOutline title="Image Scrapers" :bg="theme" theme="#29ABE0" :points="points"></ProjectOutline>
+      <ProjectOutline title="Image Scrapers" :bg="theme" theme="#29ABE0" :points="cardData.imageScraper"></ProjectOutline>
     </Card>
 
     <Card name="card-3" suffix="-innards" bg="#777777" bgt="color">
@@ -37,23 +35,23 @@ export default {
       card: 1,
       scrollThreshold: 15,
       theme: "#272B30",
-      points: [
-        {
-          title: "Pixel Scraper",
-          link: "www.google.com",
-          description: "A small script to search and find royalty free images from pexels landscape images."
-        },
-        {
-          title: "NatGeo Scraper",
-          link: "www.google.com",
-          description: "A small script to search and find images from National Geographics Image Archives given constraints."
-        },
-        {
-          title: "Reddit Scraper",
-          link: "www.google.com",
-          description: "A small script to search and find a beautiful image from reddit given constraints."
-        }
-      ]
+      cardData: {
+        imageScraper:[
+          {
+            title: "Pixel Scraper",
+            description: "A small script to search and find royalty free images from pexels landscape images.",
+            links: [{link: "https://gogle.com", icon: "github-circle"}]
+          },
+          {
+            title: "NatGeo Scraper",
+            description: "A small script to search and find images from National Geographics Image Archives given constraints."
+          },
+          {
+            title: "Reddit Scraper",
+            description: "A small script to search and find a beautiful image from reddit given constraints."
+          }
+        ]
+      }
     }
   },
   components: {
