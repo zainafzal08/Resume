@@ -4,10 +4,13 @@
       <h2> {{title}} </h2>
     </div>
     <div class="description">
-      <div :id="getContainId(title)" class="links" :style="{'border-color': theme}">
-        <a :id="getLinkId(title)" class="mdi mdi-format-horizontal-align-right" v-on:click="toggleLink(title)"></a>
-
-        <a v-for="link in links" :class="'hidden mdi mdi-'+link.icon" :href="link.link"></a>
+      <div class="open-button">
+          <a :id="getLinkButtonId(title)" class="mdi mdi-format-horizontal-align-right" v-on:click="toggleLink(title)"></a>
+      </div>
+      <div :id="getContainId(title)" class="links-container" :style="{'border-color': theme}">
+        <div :id="getLinksId(title)" class="links">
+          <a v-for="link in links" :class="'hidden mdi mdi-'+link.icon" :href="link.link"></a>
+        </div>
       </div>
       <div class="text">
         <p :id="getContentId(title)">
@@ -35,33 +38,37 @@ export default {
       }
       let container = document.getElementById(this.getContainId(t));
       let content = document.getElementById(this.getContentId(t));
-      let link = document.getElementById(this.getLinkId(t));
+      let link = document.getElementById(this.getLinkButtonId(t));
       this.toggled = !this.toggled;
       if (this.toggled) {
         this.animating = true;
-        setTimeout(function(){this.animating = false}.bind(this),1050);
+        setTimeout(function(){this.animating = false}.bind(this),550);
         // expand
-        window.Velocity(container, {'padding-right': '90%'}, 1000);
+        window.Velocity(container, {'width': '40%'}, 500);
         window.Velocity(content, {'opacity': '0'}, 200);
         window.Velocity(link, {rotateZ: '180deg'}, 500);
       } else {
         this.animating = true;
-        setTimeout(function(){this.animating = false}.bind(this),1050);
+        setTimeout(function(){this.animating = false}.bind(this),550);
         // collapse
-        window.Velocity(container, {'padding-right': '0%'}, 1000);
+        window.Velocity(container, {'width': '0%'}, 500);
         window.Velocity(link, {rotateZ: '0deg'}, 500);
         setTimeout(function () {
           window.Velocity(content, {'opacity': '1'}, 200);
-        }.bind(content), 800);
+        }.bind(content), 400);
       }
     },
     getContainId(t) {
       t = t.replace(' ','-');
       return t+'-container';
     },
-    getLinkId(t) {
+    getLinkButtonId(t) {
       t = t.replace(' ','-');
-      return t+'-link';
+      return t+'-link-button';
+    },
+    getLinksId(t) {
+      t = t.replace(' ','-');
+      return t+'-links';
     },
     getContentId(t) {
       t = t.replace(' ','-');
@@ -100,23 +107,37 @@ export default {
     flex-direction: row;
   }
 
-  .project .content .elem .description .links{
-    height: 100%;
+  .project .content .elem .description .links-container{
+    background-color: red;
+    width: 0%;
     border-right: solid 2px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  }
+
+  .project .content .elem .description .links{
+    display: none;
+
   }
 
   .project .content .elem .description .links a{
+    opacity: 0;
+  }
+
+  .project .content .elem .description .open-button {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .project .content .elem .description a{
     font-size: 2.6rem;
     opacity: 0.4;
     cursor: pointer;
     color: white;
     margin-right: 1rem;
   }
-  .project .content .elem .description .links a:hover{
+  .project .content .elem .description a:hover{
     opacity: 1;
   }
   .project .content .elem .description .text{
