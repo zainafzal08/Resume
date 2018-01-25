@@ -39,23 +39,24 @@ export default {
       let container = document.getElementById(this.getContainId(t));
       let content = document.getElementById(this.getContentId(t));
       let link = document.getElementById(this.getLinkButtonId(t));
+      let icons = document.getElementById(this.getLinksId(t)).childNodes;
       this.toggled = !this.toggled;
       if (this.toggled) {
         this.animating = true;
-        setTimeout(function(){this.animating = false}.bind(this),550);
+        setTimeout(function(){this.animating = false}.bind(this),800);
         // expand
-        window.Velocity(container, {'width': '40%'}, 500);
+        window.Velocity(container, {'width': '100%'}, 800);
         window.Velocity(content, {'opacity': '0'}, 200);
         window.Velocity(link, {rotateZ: '180deg'}, 500);
       } else {
         this.animating = true;
-        setTimeout(function(){this.animating = false}.bind(this),550);
+        setTimeout(function(){this.animating = false}.bind(this),800);
         // collapse
-        window.Velocity(container, {'width': '0%'}, 500);
         window.Velocity(link, {rotateZ: '0deg'}, 500);
-        setTimeout(function () {
+        window.Velocity(container, {'width': '0%'}, 800);
+        setTimeout(function() {
           window.Velocity(content, {'opacity': '1'}, 200);
-        }.bind(content), 400);
+        },200);
       }
     },
     getContainId(t) {
@@ -108,20 +109,18 @@ export default {
   }
 
   .project .content .elem .description .links-container{
-    background-color: red;
     width: 0%;
     border-right: solid 2px;
   }
 
   .project .content .elem .description .links{
-    display: none;
-
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #383838;
   }
-
-  .project .content .elem .description .links a{
-    opacity: 0;
-  }
-
   .project .content .elem .description .open-button {
     height: 100%;
     display: flex;
@@ -138,7 +137,11 @@ export default {
     margin-right: 1rem;
   }
   .project .content .elem .description a:hover{
-    opacity: 1;
+      opacity: 1;
+  }
+
+  .project .content .elem .description .links a{
+    color: white;
   }
   .project .content .elem .description .text{
     height: 100%;
