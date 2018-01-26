@@ -11,6 +11,10 @@
     </Card>
 
     <Card name="card-3" suffix="-innards" :bg="theme" bgt="color">
+      <ProjectOutline title="Web Dev" :bg="theme" theme="#29ABE0" :points="cardData.webDev"></ProjectOutline>
+    </Card>
+
+    <Card name="card-4" suffix="-innards" :bg="theme" bgt="color">
       <Footer :socialLinks="socials"></Footer>
     </Card>
   </div>
@@ -31,7 +35,8 @@ export default {
       cards: [
         ["card-1","card-1-innards"],
         ["card-2","card-2-innards"],
-        ["card-3","card-3-innards"]
+        ["card-3","card-3-innards"],
+        ["card-4","card-4-innards"]
       ],
       socials: [
         {link: "https://github.com/zainafzal08", icon: "github-circle"},
@@ -58,6 +63,13 @@ export default {
             title: "Reddit Scraper",
             description: "A small script to search and find a beautiful image from reddit given constraints.",
             links: [{link: "https://gogle.com", icon: "github-circle"}]
+          }
+        ],
+        webDev: [
+          {
+            title: "Hex Generator",
+            description: "A simple javascript function that generates a tesselating hexgon pattern with a gradient. Helped me understand basic gradient generation algorithms",
+            links: [{link: "https://codepen.io/zainafzal08/pen/EoqZVN", icon: "codepen"}]
           }
         ]
       }
