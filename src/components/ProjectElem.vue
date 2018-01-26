@@ -4,13 +4,8 @@
       <h2> {{title}} </h2>
     </div>
     <div class="description">
-      <div class="open-button">
-          <a :id="getLinkButtonId(title)" class="mdi mdi-format-horizontal-align-right" v-on:click="toggleLink(title)"></a>
-      </div>
-      <div :id="getContainId(title)" class="links-container" :style="{'border-color': theme}">
-        <div :id="getLinksId(title)" class="links">
-          <a v-for="link in links" :class="'hidden mdi mdi-'+link.icon" :href="link.link"></a>
-        </div>
+      <div class="open-button" :style="{'border-color': theme}">
+          <a v-for="link in links" :href="link.link" :class="'mdi mdi-'+link.icon"></a>
       </div>
       <div class="text">
         <p :id="getContentId(title)">
@@ -108,25 +103,12 @@ export default {
     flex-direction: row;
   }
 
-  .project .content .elem .description .links-container{
-    width: 0%;
-    border-right: solid 2px;
-  }
-
-  .project .content .elem .description .links{
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #383838;
-  }
   .project .content .elem .description .open-button {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    border-right: solid 2px;
   }
 
   .project .content .elem .description a{

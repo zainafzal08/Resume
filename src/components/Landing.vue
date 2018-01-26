@@ -10,8 +10,8 @@
       <ProjectOutline title="Image Scrapers" :bg="theme" theme="#29ABE0" :points="cardData.imageScraper"></ProjectOutline>
     </Card>
 
-    <Card name="card-3" suffix="-innards" bg="#777777" bgt="color">
-
+    <Card name="card-3" suffix="-innards" :bg="theme" bgt="color">
+      <Footer :socialLinks="socials"></Footer>
     </Card>
   </div>
 </template>
@@ -21,6 +21,7 @@ import DotNav from './DotNav.vue'
 import TitleBrand from './TitleBrand.vue'
 import Card from './Card.vue'
 import ProjectOutline from './ProjectOutline.vue'
+import Footer from './Footer.vue'
 
 export default {
   name: 'Landing',
@@ -31,6 +32,12 @@ export default {
         ["card-1","card-1-innards"],
         ["card-2","card-2-innards"],
         ["card-3","card-3-innards"]
+      ],
+      socials: [
+        {link: "https://github.com/zainafzal08", icon: "github-circle"},
+        {link: "https://twitter.com/NubmerOneHo", icon: "twitter"},
+        {link: "https://www.linkedin.com/in/zain-afzal-561262117/", icon: "linkedin"},
+        {link: "mailto:zain.afz@gmail.com", icon: "email"}
       ],
       card: 1,
       scrollThreshold: 15,
@@ -44,11 +51,13 @@ export default {
           },
           {
             title: "NatGeo Scraper",
-            description: "A small script to search and find images from National Geographics Image Archives given constraints."
+            description: "A small script to search and find images from National Geographics Image Archives given constraints.",
+            links: [{link: "https://gogle.com", icon: "github-circle"}]
           },
           {
             title: "Reddit Scraper",
-            description: "A small script to search and find a beautiful image from reddit given constraints."
+            description: "A small script to search and find a beautiful image from reddit given constraints.",
+            links: [{link: "https://gogle.com", icon: "github-circle"}]
           }
         ]
       }
@@ -58,7 +67,8 @@ export default {
     DotNav,
     TitleBrand,
     Card,
-    ProjectOutline
+    ProjectOutline,
+    Footer
   },
   methods: {
     handleScroll (e) {
