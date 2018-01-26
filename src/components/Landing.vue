@@ -70,6 +70,12 @@ export default {
     ProjectOutline,
     Footer
   },
+  mounted: function(){
+    for(var card in this.cards){
+      if (card != 0)
+        document.getElementById(this.cards[card][1]).style.opacity = '0';
+    }
+  },
   methods: {
     handleScroll (e) {
       if (e.deltaY > this.scrollThreshold && this.card < this.cards.length ) {

@@ -1,10 +1,12 @@
 <template>
   <div class="footer">
-    <h1> Connect With Me! </h1>
-    <br>
-    <div class="socials">
-      <div class="link" v-for="link in socialLinks">
-        <a :href="link.link" :class="'mdi mdi-'+link.icon"></a>
+    <div class="content">
+      <h1> Connect With Me! </h1>
+      <br>
+      <div class="socials">
+        <div class="link" v-for="link in socialLinks">
+          <a :href="link.link" :class="'mdi mdi-'+link.icon"></a>
+        </div>
       </div>
     </div>
     <div class="love">
@@ -31,8 +33,22 @@ export default {
 
   .footer {
     width: 40vw;
+    height: 100vh;
     text-align: center;
     font-family: 'Ubuntu',sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .footer .content {
+    width: 100%;
+  }
+
+  .footer .love {
+    position: absolute;
+    bottom: 2rem;
   }
 
   .footer h1{
@@ -59,17 +75,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .footer .love {
-    width: 100vw;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-  }
-  .footer .love span{
-    margin-bottom: 1rem;
   }
   @media screen and (max-width: 600px){
     .footer {
