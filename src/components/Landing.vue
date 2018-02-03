@@ -10,13 +10,22 @@
       <ProjectOutline title="Image Scrapers" :bg="theme" theme="#29ABE0" :points="cardData.imageScraper"></ProjectOutline>
     </Card>
 
-    <Card name="card-3" suffix="-innards" :bg="theme" bgt="color">
+    <Card name="card-3" suffix="-innards" :bg="require('./images/poster_2.png')" bgt="image">
       <ProjectOutline title="Web Dev" :bg="theme" theme="#29ABE0" :points="cardData.webDev"></ProjectOutline>
     </Card>
 
-    <Card name="card-4" suffix="-innards" :bg="theme" bgt="color">
+    <Card name="card-4" suffix="-innards" :bg="require('./images/poster_3.jpeg')" bgt="image">
+      <ProjectOutline title="Low Level" :bg="theme" theme="#29ABE0" :points="cardData.lowLevel"></ProjectOutline>
+    </Card>
+
+    <Card name="card-5" suffix="-innards" :bg="require('./images/poster_4.png')" bgt="image">
+      <ProjectOutline title="Misc" :bg="theme" theme="#29ABE0" :points="cardData.misc"></ProjectOutline>
+    </Card>
+
+    <Card name="card-6" suffix="-innards" :bg="theme" bgt="color">
       <Footer :socialLinks="socials"></Footer>
     </Card>
+
   </div>
 </template>
 
@@ -36,7 +45,9 @@ export default {
         ["card-1","card-1-innards"],
         ["card-2","card-2-innards"],
         ["card-3","card-3-innards"],
-        ["card-4","card-4-innards"]
+        ["card-4","card-4-innards"],
+        ["card-5","card-4-innards"],
+        ["card-6","card-4-innards"]
       ],
       socials: [
         {link: "https://github.com/zainafzal08", icon: "github-circle"},
@@ -67,9 +78,55 @@ export default {
         ],
         webDev: [
           {
+            title: "UNSW Sec Soc",
+            description: "The main website used by the UNSW Security Society to advertise events and resources. Built with jekyll and the bootswatch 'lux' theme with plently of tweeks",
+            links: [{link: "http://www.unswsecurity.com/", icon: "web"}]
+          },
+          {
+            title: "Subleq",
+            description: "A puzzle game revolving around a single instruction set arcitecture machine built with a friend",
+            links: [
+              {link: "http://subleq.herokuapp.com/", icon: "web"}
+            ]
+          },
+          {
+            title: "This Site!",
+            description: "The Vue components used in this very site!",
+            links: [{link: "https://github.com/zainafzal08/Resume", icon: "github-circle"}]
+          }
+        ],
+        lowLevel: [
+          {
+            title: "General Vm",
+            description: "A custom designed instruction set, run in python",
+            links: [{link: "https://github.com/zainafzal08/General_VM", icon: "github-circle"}]
+          },
+          {
+            title: "BF Machine",
+            description: "A debugging/runtime environment for the BF esoteric programming language",
+            links: [{link: "https://github.com/zainafzal08/BF-Machine", icon: "github-circle"}]
+          },
+          {
+            title: "Generic Data",
+            description: "Some basic code in C to create a abstract data structure at run time",
+            links: [{link: "https://github.com/zainafzal08/GenericData", icon: "github-circle"}]
+          }
+        ],
+        misc: [
+          {
             title: "Hex Generator",
-            description: "A simple javascript function that generates a tesselating hexgon pattern with a gradient. Helped me understand basic gradient generation algorithms",
+            description: "A simple javascript function that generates a tesselating hexgon pattern with a gradient. Helped me understand color spaces",
             links: [{link: "https://codepen.io/zainafzal08/pen/EoqZVN", icon: "codepen"}]
+          },
+          {
+            title: "Notes",
+            description: "Markdown notes for some of the courses i've taken at UNSW",
+            links: [{link: "https://github.com/zainafzal08/Notes", icon: "github-circle"}]
+          },
+          {
+            title: "Hodge Podge",
+            description: "A small discord bot to send memes, roll dice and search DnD spells!",
+            links: [{link: "https://github.com/zainafzal08/HodgePodge", icon: "github-circle"}]
           }
         ]
       }
