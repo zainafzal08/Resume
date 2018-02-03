@@ -3,27 +3,27 @@
     <DotNav :bg="theme" :dotNum="cards.length" :trigger="updateCard" :selected="card" :focused="card == 1"></DotNav>
 
     <Card name="card-1" suffix="-innards" :bg="theme" bgt="color">
-      <TitleBrand title="Zain Afzal"></TitleBrand>
+      <TitleBrand title="Zain Afzal" :colors="pallet"></TitleBrand>
     </Card>
 
     <Card name="card-2" suffix="-innards" :bg="require('./images/poster_1.jpeg')" bgt="image">
-      <ProjectOutline title="Image Scrapers" :bg="theme" theme="#29ABE0" :points="cardData.imageScraper"></ProjectOutline>
+      <ProjectOutline title="Image Scrapers" :bg="theme" :theme="pallet[2]" :points="cardData.imageScraper"></ProjectOutline>
     </Card>
 
     <Card name="card-3" suffix="-innards" :bg="require('./images/poster_2.png')" bgt="image">
-      <ProjectOutline title="Web Dev" :bg="theme" theme="#29ABE0" :points="cardData.webDev"></ProjectOutline>
+      <ProjectOutline title="Web Dev" :bg="theme" :theme="pallet[0]" :points="cardData.webDev"></ProjectOutline>
     </Card>
 
     <Card name="card-4" suffix="-innards" :bg="require('./images/poster_3.jpeg')" bgt="image">
-      <ProjectOutline title="Low Level" :bg="theme" theme="#29ABE0" :points="cardData.lowLevel"></ProjectOutline>
+      <ProjectOutline title="Low Level" :bg="theme" :theme="pallet[3]" :points="cardData.lowLevel"></ProjectOutline>
     </Card>
 
     <Card name="card-5" suffix="-innards" :bg="require('./images/poster_4.png')" bgt="image">
-      <ProjectOutline title="Misc" :bg="theme" theme="#29ABE0" :points="cardData.misc"></ProjectOutline>
+      <ProjectOutline title="Misc" :bg="theme" :theme="pallet[1]" :points="cardData.misc"></ProjectOutline>
     </Card>
 
     <Card name="card-6" suffix="-innards" :bg="theme" bgt="color">
-      <Footer :socialLinks="socials"></Footer>
+      <Footer :socialLinks="socials" :colors="pallet"></Footer>
     </Card>
 
   </div>
@@ -41,13 +41,19 @@ export default {
   data () {
     return {
       animating: false,
+      pallet: [
+        "#d9534f",
+        "#29ABE0",
+        "#F47C3C",
+        "#93C54B"
+      ],
       cards: [
         ["card-1","card-1-innards"],
         ["card-2","card-2-innards"],
         ["card-3","card-3-innards"],
         ["card-4","card-4-innards"],
-        ["card-5","card-4-innards"],
-        ["card-6","card-4-innards"]
+        ["card-5","card-5-innards"],
+        ["card-6","card-6-innards"]
       ],
       socials: [
         {link: "https://github.com/zainafzal08", icon: "github-circle"},

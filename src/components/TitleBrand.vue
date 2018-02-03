@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'TitleBrand',
-  props: ["title"],
+  props: ["title","colors"],
   data () {
     return {
       tagCycler: null,
@@ -24,19 +24,19 @@ export default {
         },
         {
           text: "A real whizz with html",
-          color: "#d9534f"
+          color: this.colors[0]
         },
         {
           text: "Hair insured for $10,000",
-          color: "#29ABE0"
+          color: this.colors[1]
         },
         {
           text: "Loves python like a child",
-          color: "#F47C3C"
+          color: this.colors[2]
         },
         {
           text: "Only cries a little at seg faults",
-          color: "#93C54B"
+          color: this.colors[3]
         }
       ],
       liveTag: 0

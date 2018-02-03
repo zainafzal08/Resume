@@ -4,8 +4,8 @@
       <h1> Connect With Me! </h1>
       <br>
       <div class="socials">
-        <div class="link" v-for="link in socialLinks">
-          <a :href="link.link" :class="'mdi mdi-'+link.icon"></a>
+        <div class="link" v-for="(link, i) in socialLinks">
+          <SocialLink :link="link.link" :icon="link.icon" :color="colors[i]"></SocialLink>
         </div>
       </div>
     </div>
@@ -16,13 +16,16 @@
 </template>
 
 <script>
+import SocialLink from './SocialLink.vue'
 export default {
   name: 'Footer',
-  props: ["title","socialLinks"],
+  props: ["title","socialLinks","colors"],
   data () {
     return {
-
     }
+  },
+  components: {
+    SocialLink
   }
 }
 </script>
@@ -61,21 +64,14 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 2rem;
   }
-  .footer .socials a{
-    color: white;
-    opacity: 0.4;
-  }
-  .footer .socials a:hover{
-    color: white;
-    opacity: 1;
-  }
+
   .footer .socials .link{
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   @media screen and (max-width: 600px){
     .footer {
       width: 90vw;
