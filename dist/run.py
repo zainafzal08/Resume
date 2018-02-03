@@ -7,6 +7,7 @@ app.secret_key = 'B3Dvm1BJF1'
 
 @app.route('/')
 def index():
+    print("HELLO")
     return render_template('index.html')
 
 @app.route('/imgRequest')
