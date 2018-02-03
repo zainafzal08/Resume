@@ -1,7 +1,7 @@
 import pexelScraper
 import json
 
-from flask import Flask, render_template, request, g, session, redirect
+from flask import Flask, render_template, request, g, session, redirect, abort
 app = Flask(__name__)
 app.secret_key = 'B3Dvm1BJF1'
 
