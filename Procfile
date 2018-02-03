@@ -1,1 +1,1 @@
-web: gunicorn dist/run:app --log-file -
+web: gunicorn --pythonpath dist run:app --log-file -
