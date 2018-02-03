@@ -2,7 +2,7 @@ cd dist
 rm -r *
 cd ..
 npm run build
-cp run.py dist/run.py
+cp *.py dist/
 mkdir dist/templates
 mv dist/index.html dist/templates/
 python3 dist/run.py
