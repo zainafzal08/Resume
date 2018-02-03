@@ -1,5 +1,6 @@
 cd dist
 rm -r *
+touch __init__.py
 cd ..
 npm run build
 cp *.py dist/
