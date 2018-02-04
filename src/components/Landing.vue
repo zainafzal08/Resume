@@ -70,17 +70,17 @@ export default {
           {
             title: "Pixel Scraper",
             description: "A small script to search and find royalty free images from pexels landscape images.",
-            links: [{link: "https://gogle.com", icon: "github-circle"}]
+            links: [{link: "https://github.com/zainafzal08/CoolStuff/blob/master/Scripts/Image%20Scrapers/Pexel.py", icon: "github-circle"}]
           },
           {
             title: "NatGeo Scraper",
             description: "A small script to search and find images from National Geographics Image Archives given constraints.",
-            links: [{link: "https://gogle.com", icon: "github-circle"}]
+            links: [{link: "https://github.com/zainafzal08/CoolStuff/blob/master/Scripts/Image%20Scrapers/NatGeo.py", icon: "github-circle"}]
           },
           {
             title: "Reddit Scraper",
             description: "A small script to search and find a beautiful image from reddit given constraints.",
-            links: [{link: "https://gogle.com", icon: "github-circle"}]
+            links: [{link: "https://github.com/zainafzal08/CoolStuff/blob/master/Scripts/Image%20Scrapers/NatGeo.py", icon: "github-circle"}]
           }
         ],
         webDev: [
@@ -224,7 +224,6 @@ export default {
     window.removeEventListener('wheel', this.handleScroll)
     document.removeEventListener('touchstart',this.handleTouchStart)
     document.removeEventListener('touchend',this.handleTouchEnd)
-
   }
 }
 </script>
