@@ -162,9 +162,13 @@ export default {
       }
     },
     handleTouchStart(e) {
+      if (e.touches.length > 1)
+        return
       this.lastY = e.touches[0].clientY;
     },
     handleTouchEnd(e) {
+      if (e.touches.length > 1)
+        return
       var currentY = e.changedTouches[0].clientY
       var val = this.lastY - currentY
       var diff = Math.abs(this.lastY - currentY)

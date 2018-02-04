@@ -96,6 +96,12 @@ export default {
       font-size: 3rem;
       margin: 0;
     }
+    .project .content .container{
+      margin: 3rem;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   @media screen and (min-width: 1500px){
@@ -108,6 +114,11 @@ export default {
       font-family: 'josefin sans', monospace;
       font-size: 5rem;
       margin: 0;
+    }
+    .project .content .container{
+      margin: 3rem;
+      display: flex;
+      flex-direction: column;
     }
   }
   .shadow {

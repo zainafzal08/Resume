@@ -129,6 +129,7 @@ export default {
     height: 100%;
     display: flex;
     align-items: center;
+    font-family: 'Ubuntu';
   }
   .project .content .elem .description .text p{
     margin-left: 5%;
@@ -140,7 +141,18 @@ export default {
       height: 7rem;
       display: flex;
       flex-direction: column;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2rem;
+    }
+    .project .content .elem .description .text{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    .project .content .elem .elem-title h2{
+      font-family: 'josefin sans', monospace;
+      margin: 0;
+      font-size: 1.3rem;
     }
   }
 
@@ -150,6 +162,17 @@ export default {
       display: flex;
       flex-direction: column;
       margin-bottom: 6rem;
+    }
+    .project .content .elem .description .text{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+    .project .content .elem .elem-title h2{
+      font-family: 'josefin sans', monospace;
+      margin: 0;
+      font-size: 1.8rem;
     }
   }
 </style>

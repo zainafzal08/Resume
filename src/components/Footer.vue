@@ -78,5 +78,9 @@ export default {
       text-align: center;
       font-family: 'Ubuntu',sans-serif;
     }
+    .footer h1{
+      font-size: 2rem;
+      margin-top: 0;
+    }
   }
 </style>
