@@ -62,6 +62,7 @@ export default {
         {link: "mailto:zain.afz@gmail.com", icon: "email"}
       ],
       card: 1,
+      lastY: -1,
       scrollThreshold: 15,
       theme: "#272B30",
       cardData: {
@@ -85,7 +86,7 @@ export default {
         webDev: [
           {
             title: "UNSW Sec Soc",
-            description: "The main website used by the UNSW Security Society to advertise events and resources. Built with jekyll and the bootswatch 'lux' theme with plently of tweeks",
+            description: "The UNSW Security Society Website built with jekyll and the bootswatch 'lux' theme",
             links: [{link: "http://www.unswsecurity.com/", icon: "web"}]
           },
           {
@@ -121,7 +122,7 @@ export default {
         misc: [
           {
             title: "Hex Generator",
-            description: "A simple javascript function that generates a tesselating hexgon pattern with a gradient. Helped me understand color spaces",
+            description: "js that outputs a svg hexagon pattern with a custom gradient",
             links: [{link: "https://codepen.io/zainafzal08/pen/EoqZVN", icon: "codepen"}]
           },
           {
@@ -158,6 +159,19 @@ export default {
       }
       if (e.deltaY < -1 * this.scrollThreshold  && this.card > 1 ) {
         this.prevCard(800,false)
+      }
+    },
+    handleTouchStart(e) {
+      this.lastY = e.touches[0].clientY;
+    },
+    handleTouchEnd(e) {
+      var currentY = e.changedTouches[0].clientY
+      var val = this.lastY - currentY
+      var diff = Math.abs(this.lastY - currentY)
+      if ( diff > this.scrollThreshold && val < 0) {
+        this.prevCard(800,false)
+      } else if (diff > this.scrollThreshold && val > 0) {
+        this.nextCard(800,false)
       }
     },
     updateCard(c) {
@@ -199,9 +213,14 @@ export default {
   },
   created () {
     window.addEventListener('wheel', this.handleScroll)
+    document.addEventListener('touchstart',this.handleTouchStart, false)
+    document.addEventListener('touchend',this.handleTouchEnd, false)
   },
   destroyed () {
     window.removeEventListener('wheel', this.handleScroll)
+    document.removeEventListener('touchstart',this.handleTouchStart)
+    document.removeEventListener('touchend',this.handleTouchEnd)
+
   }
 }
 </script>
