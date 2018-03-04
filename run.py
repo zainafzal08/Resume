@@ -5,9 +5,22 @@ from flask import Flask, render_template, request, g, session, redirect, abort
 app = Flask(__name__)
 app.secret_key = 'B3Dvm1BJF1'
 
+shortcuts = {
+    "cs2521": "https://github.com/zainafzal08/COMP2521-18s1",
+    "comp2521": "https://github.com/zainafzal08/COMP2521-18s1",
+    "2521": "https://github.com/zainafzal08/COMP2521-18s1"
+}
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/<page>')
+def direct(page):
+    global redirects
+    if page in shortcuts:
+        return redirect(shortcuts[page])
+    abort(404)
 
 @app.route('/imgRequest')
 def imgRequest():
