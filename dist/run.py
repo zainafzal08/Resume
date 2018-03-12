@@ -8,7 +8,8 @@ app.secret_key = 'B3Dvm1BJF1'
 shortcuts = {
     "cs2521": "https://github.com/zainafzal08/COMP2521-18s1",
     "comp2521": "https://github.com/zainafzal08/COMP2521-18s1",
-    "2521": "https://github.com/zainafzal08/COMP2521-18s1"
+    "2521": "https://github.com/zainafzal08/COMP2521-18s1",
+    "3131": "https://github.com/zainafzal08/cs3131"
 }
 
 @app.route('/')
