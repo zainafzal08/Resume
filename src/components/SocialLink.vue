@@ -1,13 +1,13 @@
 <template>
   <div class="socialLink" v-on="{mouseover: mouseOver,mouseleave: mouseLeave}">
-    <a :href="link" :class="'mdi mdi-'+icon" :style="{'color': getColor()}"></a>
+      <a :href="link" :class="'mdi mdi-'+icon" :style="{'color': getColor()}"></a>
   </div>
 </template>
 
 <script>
 export default {
   name: 'socialLink',
-  props: ['link','icon','color'],
+  props: ['link','icon','color','routerLink'],
   data () {
     return {
       hovered: false

@@ -10,7 +10,6 @@
           <div v-for="(point, i) in points">
             <ProjectElem :title="point.title" :description="point.description" :theme="theme" :links="point.links"></ProjectElem>
           </div>
-
         </div>
       </div>
     </div>

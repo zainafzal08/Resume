@@ -5,7 +5,9 @@
     </div>
     <div class="description">
       <div class="open-button" :style="{'border-color': theme}">
-          <a v-for="link in links" :href="link.link" :class="'mdi mdi-'+link.icon"></a>
+        <div v-for="link in links">
+          <a :href="link.link" :class="'mdi mdi-'+link.icon"></a>
+        </div>
       </div>
       <div class="text">
         <p :id="getContentId(title)">
@@ -75,7 +77,6 @@ export default {
 </script>
 
 <style>
-
   .hidden {
     opacity: 0;
     display: none;
@@ -125,6 +126,7 @@ export default {
   .project .content .elem .description .links a{
     color: white;
   }
+
   .project .content .elem .description .text{
     height: 100%;
     display: flex;

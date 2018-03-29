@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Landing from '@/components/Landing'
+import Notes from '@/components/Notes'
 
 Vue.use(Router)
 
@@ -14,7 +15,7 @@ export default new Router({
     {
       path: '/notes',
       name: 'Notes',
-      component: Landing
+      component: Notes
     }
   ]
 })
