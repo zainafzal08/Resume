@@ -10,6 +10,11 @@ export default new Router({
       path: '/',
       name: 'LandingPage',
       component: Landing
+    },
+    {
+      path: '/notes',
+      name: 'Notes',
+      component: Landing
     }
   ]
 })

@@ -36,5 +36,18 @@ def imgRequest():
 	else:
 		abort(404)
 
+# notes api
+@app.route('/notesapi/<course>/<file>')
+def notesRender(course, file):
+    abort(404)
+
+@app.route('/notesapi/<course>')
+def notesCourseIndex(course):
+    abort(404)
+
+@app.route('/notesapi')
+def notesIndex():
+    abort(404)
+
 if __name__ == "__main__":
 	app.run(debug=False)

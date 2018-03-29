@@ -6,12 +6,12 @@
       <TitleBrand title="Zain Afzal" :colors="pallet"></TitleBrand>
     </Card>
 
-    <Card name="card-2" suffix="-innards" :bg="require('./images/poster_1.jpeg')" bgt="image">
-      <ProjectOutline title="Image Scrapers" :bg="theme" :theme="pallet[2]" :points="cardData.imageScraper"></ProjectOutline>
-    </Card>
-
     <Card name="card-3" suffix="-innards" :bg="require('./images/poster_2.png')" bgt="image">
       <ProjectOutline title="Web Dev" :bg="theme" :theme="pallet[0]" :points="cardData.webDev"></ProjectOutline>
+    </Card>
+
+    <Card name="card-2" suffix="-innards" :bg="require('./images/poster_1.jpeg')" bgt="image">
+      <ProjectOutline title="Image Scrapers" :bg="theme" :theme="pallet[2]" :points="cardData.imageScraper"></ProjectOutline>
     </Card>
 
     <Card name="card-4" suffix="-innards" :bg="require('./images/poster_3.jpeg')" bgt="image">
@@ -128,7 +128,10 @@ export default {
           {
             title: "Notes",
             description: "Markdown notes for some of the courses i've taken at UNSW",
-            links: [{link: "https://github.com/zainafzal08/Notes", icon: "github-circle"}]
+            links: [
+              {link: "https://github.com/zainafzal08/Notes", icon: "github-circle"},
+              {link: "/notes", icon: "web"}
+            ]
           },
           {
             title: "Hodge Podge",

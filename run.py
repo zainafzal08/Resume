@@ -11,7 +11,9 @@ shortcuts = {
     "2521": "https://github.com/zainafzal08/COMP2521-18s1",
     "3131": "https://github.com/zainafzal08/cs3131"
 }
-
+notes = {
+    "comp3131":
+}
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -35,6 +37,19 @@ def imgRequest():
 		return json.dumps(img)
 	else:
 		abort(404)
+
+# notes api
+@app.route('/notesapi/<course>/<file>')
+def notesRender(course, file):
+    abort(404)
+
+@app.route('/notesapi/<course>')
+def notesCourseIndex(course):
+    abort(404)
+
+@app.route('/notesapi')
+def notesIndex():
+    abort(404)
 
 if __name__ == "__main__":
 	app.run(debug=False)

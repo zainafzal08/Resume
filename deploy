@@ -6,4 +6,5 @@ npm run build
 cp *.py dist/
 mkdir dist/templates
 mv dist/index.html dist/templates/
+cp templates/* dist/templates/
 python3 dist/run.py
