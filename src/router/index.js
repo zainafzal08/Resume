@@ -13,9 +13,18 @@ export default new Router({
       component: Landing
     },
     {
-      path: '/notes',
+      path: '/notes/:course',
       name: 'Notes',
       component: Notes
+    },{
+          path: '/notes/:course/:file',
+          name: 'Notes',
+          component: Notes
+    },
+    {
+        path: '/notes',
+        name: 'Notes',
+        component: Notes
     }
   ]
 })

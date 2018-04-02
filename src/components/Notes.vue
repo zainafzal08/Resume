@@ -1,40 +1,71 @@
 <template>
-  <Directory title="Notes" :items="items"></Directory>
+  <div>
+    <Directory v-if="this.state == 'dir'" :title="title" :items="items"></Directory>
+    <MarkdownPage v-if="this.state == 'file'" :content="renderedMd" :title="title"> </MarkdownPage>
+  </div>
 </template>
 
 <script>
 import Directory from './Directory.vue'
+import MarkdownPage from './MarkdownPage.vue'
+import axios from 'axios';
 
 export default {
   name: 'notes',
   props: [],
   data () {
     return {
-      items: [
-        {
-          name: "COMP3131",
-          link: "http://thefuckifiknow.com",
-          sub: "i'm more of a dom",
-          count: 7
-        },
-        {
-          name: "COMP2121",
-          link: "http://thefuckifiknow.com",
-          sub: "lmao",
-          count: 9
-        },
-        {
-          name: "COMP38fuck2",
-          link: "http://thefuckifiknow.com",
-          sub: "i know, genius",
-          count: 23
-        }
-      ]
+      title: "Notes",
+      items: [],
+      errors: [],
+      state: "dir",
+      renderedMd: null,
+      base: "http://127.0.0.1:5000"
     }
   },
-  methods: {},
+  watch: {
+    $route (to, from){
+        if (!this.$route.params.file) this.updateItems()
+        else this.renderMd()
+    }
+  },
+  created() {
+    if (!this.$route.params.file) this.updateItems()
+    else this.renderMd()
+  },
+  methods: {
+    updateItems: function() {
+      this.state = "dir"
+      let url = this.base
+      if(this.$route.params.course) {
+        url += "/notesapi/"+this.$route.params.course
+        this.title = this.$route.params.course
+      }else{
+        url += "/notesapi"
+      }
+      axios.get(url).then(result => {
+        this.items = result.data
+      }).catch(err => {
+          this.errors.push(err)
+      })
+    },
+    renderMd: function() {
+      this.state = "file"
+      this.title = this.$route.params.file
+      let url = this.base + "/notesapi/"
+      url += this.$route.params.course+"/"+this.$route.params.file
+      this.renderedMd = null
+
+      axios.get(url).then(result => {
+        this.renderedMd = result.data
+      }).catch(err => {
+        this.errors.push(err)
+      })
+    }
+  },
   components: {
-    Directory
+    Directory,
+    MarkdownPage
   }
 }
 </script>
