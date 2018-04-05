@@ -9,7 +9,7 @@
         <pulse-loader :loading="loading" color="#919aa1"></pulse-loader>
       </div>
       <div v-if="content != null">
-        <h1 style="color: white"> BITCH! </h1>
+        <div v-html="content"></div>
       </div>
     </div>
   </div>

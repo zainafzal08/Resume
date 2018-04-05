@@ -4,6 +4,7 @@ import os
 import base64
 import requests
 import time
+from mdRenderer import render
 
 from flask import Flask, render_template, request, g, session, redirect, abort
 app = Flask(__name__)
@@ -78,10 +79,15 @@ def getCourse(course):
     return res
 
 def getFile(course, file):
-    return None
+    url = "https://api.github.com/repos/zainafzal08/Notes/contents/%s/%s"%(course,file)
+    res = requests.get(url)
+    files = res.json()
+    mdFile = [f for f in files if f["name"].split(".")[1] == "md"][0]
+    res = requests.get(mdFile["download_url"])
+    return res.text
 
 def renderMarkdown(raw):
-    return None
+    return render(raw)
 
 def jsonResponse(j):
     response = app.response_class(
@@ -105,7 +111,7 @@ def notesRender(course, file):
         abort(404)
     if file not in desc["tree"][course]:
         abort(404)
-    return jsonResponse({"lol":"fuck"})
+    return jsonResponse({"rendered":renderMarkdown(getFile(course,file))})
 
 @app.route('/notesapi/<course>')
 def notesCourseIndex(course):

@@ -57,7 +57,7 @@ export default {
       this.renderedMd = null
 
       axios.get(url).then(result => {
-        this.renderedMd = result.data
+        this.renderedMd = result.data.rendered
       }).catch(err => {
         this.errors.push(err)
       })
