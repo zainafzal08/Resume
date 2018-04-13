@@ -3,3 +3,8 @@ gunicorn==19.6.0
 Jinja2==2.8
 praw==5.0.1
 PyGithub==1.35
+html5lib==1.0.1
+markdown2==2.3.5
+MarkupSafe==1.0
+misaka==2.1.0
+Pygments==2.2.0
