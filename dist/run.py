@@ -5,6 +5,7 @@ import base64
 import requests
 import time
 from mdRenderer import render
+import datetime
 
 from flask import Flask, render_template, request, g, session, redirect, abort
 app = Flask(__name__)
@@ -123,6 +124,26 @@ def notesCourseIndex(course):
 @app.route('/notesapi')
 def notesIndex():
     return jsonResponse(getNotesRoot())
+
+# logging
+
+@app.route('/logme')
+def logme():
+    f = open("log.txt","w+")
+    leNow = datetime.datetime.now().strftime("%d %b %Y %I:%M %p")
+    leArgs = ["%s:%s"%(x,request.args[x]) for x in request.args.keys()]
+    leArgs = ",".join(leArgs)
+    f.write("%s$%s\n"%(leNow,leArgs))
+    f.close()
+    return jsonResponse({"msg":"yoinks!"})
+
+@app.route('/log')
+def log():
+    f = open("log.txt","r")
+    daLog = f.read().split("\n")
+    daLog = [x.split("$") for x in daLog]
+    f.close()
+    return render_template("log.html",log=daLog)
 
 if __name__ == "__main__":
     now = int(time.time())

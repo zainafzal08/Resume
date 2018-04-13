@@ -129,7 +129,7 @@ export default {
             title: "Notes",
             description: "Markdown notes for some of the courses i've taken at UNSW",
             links: [
-              {link: "#/notes", icon: "web"}
+              {link: "https://github.com/zainafzal08/Notes", icon: "github-circle"}
             ]
           },
           {
