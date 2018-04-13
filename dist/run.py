@@ -129,7 +129,7 @@ def notesIndex():
 
 @app.route('/logme')
 def logme():
-    f = open("log.txt","w+")
+    f = open("log.txt","a")
     leNow = datetime.datetime.now().strftime("%d %b %Y %I:%M %p")
     leArgs = ["%s:%s"%(x,request.args[x]) for x in request.args.keys()]
     leArgs = ",".join(leArgs)
