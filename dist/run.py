@@ -133,6 +133,8 @@ def logme():
     leNow = datetime.datetime.now().strftime("%d %b %Y %I:%M %p")
     leArgs = ["%s:%s"%(x,request.args[x]) for x in request.args.keys()]
     leArgs = ",".join(leArgs)
+    leArgs = "{%s} "%leArgs
+    leArgs += str(request.headers)
     f.write("%s$%s\n"%(leNow,leArgs))
     f.close()
     return jsonResponse({"msg":"yoinks!"})
